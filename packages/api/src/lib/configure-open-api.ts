@@ -4,8 +4,8 @@ import packageJson from "../../package.json"
 
 import type { AppOpenAPI } from "./types"
 
-export const docsPath = "/docs"
-export const apiReferencePath = "/reference"
+export const docsPath = "docs"
+export const apiReferencePath = "reference"
 
 export function configureOpenAPI(app: AppOpenAPI) {
   app.doc(docsPath, {

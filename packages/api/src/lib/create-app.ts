@@ -7,8 +7,8 @@ import type { AppBindings } from "./types"
 import { logger } from "hono/logger"
 import onError from "./on-error"
 
-export const platformPath = "/api/platform"
-export const publicPath = "/api/public"
+export const platformPath = "/platform"
+export const publicPath = "/public"
 
 export default function createApp() {
   const app = createRouter().basePath("/api")

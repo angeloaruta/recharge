@@ -8,7 +8,7 @@ const onError: ErrorHandler = (err, c) => {
   const environment = env.NODE_ENV || "development"
   const requestId = c.get("requestId")
   const errorResponse = {
-    message: err.message,
+    message: environment === "production" ? "Internal Server Error" : err.message,
     requestId,
     stack: environment === "production" ? undefined : err.stack,
   }
