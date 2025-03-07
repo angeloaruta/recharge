@@ -2,15 +2,20 @@
   "name": "@recharge/db",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "@recharge/tsconfig": "workspace:*"
+    "@recharge/eslint-config": "workspace:*",
+    "@recharge/tsconfig": "workspace:*",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "eslint": "^9.0.0"
   },
   "exports": {
     ".": "./src/index.ts",

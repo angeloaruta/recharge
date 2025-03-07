@@ -9,7 +9,19 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 })
 
-const eslintConfig = [
+/** @type {import("eslint").Linter.FlatConfig[]} */
+const config = [
+  {
+    ignores: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/.next/**",
+      "**/out/**",
+      "**/build/**",
+      "**/.turbo/**",
+      "**/.vercel/**",
+    ],
+  },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   ...compat.config({
     extends: ["next"],
@@ -19,4 +31,4 @@ const eslintConfig = [
   }),
 ]
 
-export default eslintConfig
+export default config
