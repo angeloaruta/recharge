@@ -15,6 +15,9 @@
   },
   "devDependencies": {
     "@recharge/tsconfig": "workspace:*",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "eslint": "^8.57.0",
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
     "prettier-plugin-sort-imports": "^1.8.6",
@@ -34,9 +37,12 @@
     "@vercel/analytics": "^1.5.0"
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": [
+    "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "prettier --write --ignore-unknown"
+      "prettier --write ."
+    ],
+    "*.{json,css,md}": [
+      "prettier --write ."
     ]
   }
 }
