@@ -2,10 +2,6 @@
   "name": "@recharge/db",
   "version": "0.0.0",
   "private": true,
-  "dependencies": {
-    "drizzle-orm": "^0.40.0",
-    "postgres": "^3.4.5"
-  },
   "scripts": {
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
@@ -14,14 +10,7 @@
     "lint": "eslint . --ext .ts,.tsx"
   },
   "devDependencies": {
-    "@recharge/tsconfig": "workspace:*",
-    "@types/node": "^22.13.9",
-    "@typescript-eslint/eslint-plugin": "^8.26.0",
-    "@typescript-eslint/parser": "^8.26.0",
-    "dotenv": "^16.4.7",
-    "drizzle-kit": "^0.30.5",
-    "eslint": "^8.57.0",
-    "typescript": "^5.8.2"
+    "@recharge/tsconfig": "workspace:*"
   },
   "exports": {
     ".": "./src/index.ts",

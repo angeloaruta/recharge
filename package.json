@@ -4,26 +4,46 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "build:web": "turbo run build --filter=@recharge/web",
+    "build:admin": "turbo run build --filter=@recharge/admin",
+    "build:all": "bun run build:web && bun run build:admin",
     "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=@recharge/web",
+    "dev:admin": "turbo run dev --filter=@recharge/admin",
     "start": "turbo run start",
     "lint": "turbo run lint",
     "format": "prettier --write .",
     "check": "bun run check:format && bun run lint",
     "check-types": "turbo run check-types",
     "check:format": "prettier . --check",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:generate": "turbo run db:generate",
+    "db:migrate": "turbo run db:migrate",
+    "db:push": "turbo run db:push",
+    "db:studio": "turbo run db:studio"
   },
   "devDependencies": {
     "@recharge/tsconfig": "workspace:*",
+    "@types/node": "^22.13.9",
     "@typescript-eslint/eslint-plugin": "^8.26.0",
     "@typescript-eslint/parser": "^8.26.0",
+    "dotenv": "^16.4.7",
+    "drizzle-kit": "^0.30.5",
     "eslint": "^8.57.0",
+    "eslint-config-next": "15.2.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-import-resolver-typescript": "^3.8.3",
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
     "prettier-plugin-sort-imports": "^1.8.6",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "turbo": "^2.4.4",
     "typescript": "5.8.2"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.5.0",
+    "drizzle-orm": "^0.40.0",
+    "postgres": "^3.4.5"
   },
   "engines": {
     "node": ">=18"
@@ -33,9 +53,6 @@
     "apps/*",
     "packages/*"
   ],
-  "dependencies": {
-    "@vercel/analytics": "^1.5.0"
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
