@@ -1,6 +1,68 @@
-# @recharge/ui
+# Recharge UI
 
-This package contains the UI components for the Recharge application.
+Shared UI components for the Recharge platform. This package provides a consistent design system and component library used across all Recharge applications.
+
+## Features
+
+- Accessible UI components
+- Consistent design system
+- Theming support
+- Form components and validation
+
+## Tech Stack
+
+- [React](https://react.dev) - UI library
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
+- [Radix UI](https://www.radix-ui.com) - Unstyled, accessible components
+- [Framer Motion](https://www.framer.com/motion) - Animation library
+
+## Getting Started
+
+### Installation
+
+The package is installed automatically as a workspace dependency.
+
+### Usage
+
+```tsx
+import { Button, Card, Input } from "@recharge/ui"
+
+function MyComponent() {
+  return (
+    <Card>
+      <Card.Header>
+        <Card.Title>My Card</Card.Title>
+      </Card.Header>
+      <Card.Content>
+        <Input placeholder="Enter your name" />
+        <Button>Submit</Button>
+      </Card.Content>
+    </Card>
+  )
+}
+```
+
+## Development
+
+### Adding New Components
+
+1. Create a new component file in the appropriate directory
+2. Export the component from the index file
+3. Add documentation and examples
+
+### Building
+
+```bash
+bun run build
+```
+
+## Documentation
+
+Component documentation is available in the Storybook:
+
+```bash
+bun run storybook
+```
 
 ## Adding Components
 
@@ -25,18 +87,6 @@ bun run ui:add button card input
 ## Available Components
 
 For a list of available components, visit the [shadcn UI website](https://ui.shadcn.com/docs/components).
-
-## Usage
-
-Import components from the UI package:
-
-```tsx
-import { Button } from "@recharge/ui/components/button"
-
-export default function MyComponent() {
-  return <Button variant="default">Click me</Button>
-}
-```
 
 ## Customizing Components
 
