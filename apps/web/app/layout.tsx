@@ -1,22 +1,17 @@
 import { Geist, Geist_Mono } from "next/font/google"
 
-import type { Metadata } from "next"
-import "./globals.css"
+import { Providers } from "@/components/providers"
+import "@recharge/ui/globals.css"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fontSans = Geist({
   subsets: ["latin"],
+  variable: "--font-sans",
 })
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fontMono = Geist_Mono({
   subsets: ["latin"],
+  variable: "--font-mono",
 })
-
-export const metadata: Metadata = {
-  title: "Recharge App",
-  description: "Recharge App",
-}
 
 export default function RootLayout({
   children,
@@ -24,12 +19,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        suppressHydrationWarning
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
