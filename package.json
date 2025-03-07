@@ -28,6 +28,7 @@
   "devDependencies": {
     "@recharge/eslint-config": "workspace:*",
     "@recharge/tsconfig": "workspace:*",
+    "@recharge/api": "workspace:*",
     "@types/node": "^22.13.9",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
