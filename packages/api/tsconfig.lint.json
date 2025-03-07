@@ -1,11 +1,8 @@
 {
   "extends": "@recharge/tsconfig/react-library.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@recharge/api/*": ["./src/*"]
-    }
+    "outDir": "dist"
   },
-  "include": ["."],
+  "include": ["src", "turbo"],
   "exclude": ["node_modules", "dist"]
 }

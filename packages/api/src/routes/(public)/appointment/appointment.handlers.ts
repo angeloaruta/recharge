@@ -3,11 +3,15 @@ import {
   CreateAppointmentRoute,
   GetAppointmentRoute,
   ModifyAppointmentRoute,
-} from "./appointment.routes"
-import { appointmentSchema, modifyAppointmentSchema } from "./appointment.schemas"
-import { checkIfNoValidFields, getUpdateData } from "@/lib/utils"
+} from "@recharge/api/routes/(public)/appointment/appointment.routes"
+import {
+  appointmentSchema,
+  modifyAppointmentSchema,
+} from "@recharge/api/routes/(public)/appointment/appointment.schemas"
+import { checkIfNoValidFields } from "@recharge/api/lib/utils"
 import * as HttpStatusCodes from "stoker/http-status-codes"
-import { AppRouteHandler } from "@/lib/types"
+import { AppRouteHandler } from "@recharge/api/lib/types"
+import { getUpdateData } from "@recharge/api/lib/utils"
 
 export const getAppointment: AppRouteHandler<GetAppointmentRoute> = async (c) => {
   const params = await c.req.valid("param")

@@ -3,10 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint"
   },
   "dependencies": {
     "@hono/zod-openapi": "^0.19.2",
@@ -18,5 +16,13 @@
     "@recharge/eslint-config": "workspace:*",
     "@recharge/tsconfig": "workspace:*",
     "@types/bun": "latest"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    },
+    "./lib/*": "./src/lib/*.ts",
+    "./routes/*": "./src/routes/*.ts"
   }
 }

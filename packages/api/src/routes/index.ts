@@ -1,1 +1,1 @@
-export { default as appointment } from "./(public)/appointment/appointment.index"
+export { default as appointment } from "@recharge/api/routes/(public)/appointment/appointment.index"

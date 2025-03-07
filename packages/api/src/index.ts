@@ -1,6 +1,6 @@
-import { configureOpenAPI } from "@/lib/configure-open-api"
-import createApp from "@/lib/create-app"
-import { appointment } from "@/routes"
+import { configureOpenAPI } from "@recharge/api/lib/configure-open-api"
+import { appointment } from "@recharge/api/routes/index"
+import createApp from "@recharge/api/lib/create-app"
 import { env } from "@recharge/env"
 
 const app = createApp()

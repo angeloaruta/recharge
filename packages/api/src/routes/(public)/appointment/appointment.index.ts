@@ -1,6 +1,6 @@
-import { createRouter, publicPath } from "@/lib/create-app"
-import * as handlers from "./appointment.handlers"
-import * as routes from "./appointment.routes"
+import * as handlers from "@recharge/api/routes/(public)/appointment/appointment.handlers"
+import * as routes from "@recharge/api/routes/(public)/appointment/appointment.routes"
+import { createRouter, publicPath } from "@recharge/api/lib/create-app"
 
 const router = createRouter()
   .basePath(`${publicPath}/v1/appointment`)

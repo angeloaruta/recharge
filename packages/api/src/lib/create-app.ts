@@ -1,11 +1,11 @@
+import type { AppBindings } from "@recharge/api/lib/types"
 import defaultHook from "stoker/openapi/default-hook"
+import onError from "@recharge/api/lib/on-error"
 import { OpenAPIHono } from "@hono/zod-openapi"
 import { notFound } from "stoker/middlewares"
 import { prettyJSON } from "hono/pretty-json"
 import { requestId } from "hono/request-id"
-import type { AppBindings } from "./types"
 import { logger } from "hono/logger"
-import onError from "./on-error"
 
 export const platformPath = "/platform"
 export const publicPath = "/public"
