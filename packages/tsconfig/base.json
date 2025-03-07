@@ -1,7 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "declaration": false,
+    "declaration": true,
+    "declarationMap": true,
     "esModuleInterop": true,
     "incremental": false,
     "isolatedModules": true,

@@ -1,19 +1,35 @@
-import reactConfig from "./react.js"
+import { FlatCompat } from "@eslint/eslintrc"
+import { fileURLToPath } from "url"
+import { dirname } from "path"
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
-export default [
-  ...reactConfig,
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+})
+
+/** @type {import("eslint").Linter.FlatConfig[]} */
+export const nextJsConfig = [
   {
-    files: [
-      "app/**/*.{js,ts,jsx,tsx}",
-      "pages/**/*.{js,ts,jsx,tsx}",
-      "components/**/*.{js,ts,jsx,tsx}",
-      "lib/**/*.{js,ts,jsx,tsx}",
-      "src/**/*.{js,ts,jsx,tsx}",
+    ignores: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/.next/**",
+      "**/out/**",
+      "**/build/**",
+      "**/.turbo/**",
+      "**/.vercel/**",
     ],
-    rules: {
-      // Add Next.js specific rules here
-      "import/no-default-export": "off",
-    },
   },
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.config({
+    extends: ["next"],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-unused-vars": "off",
+    },
+  }),
 ]
+
+export default nextJsConfig

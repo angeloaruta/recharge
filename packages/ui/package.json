@@ -1,5 +1,5 @@
 {
-  "name": "@recharge/env",
+  "name": "@recharge/ui",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -10,11 +10,11 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "dotenv": "^16.4.7",
-    "zod": "^3.24.2"
+    "tailwindcss": "^4"
   },
   "devDependencies": {
     "@recharge/eslint-config": "workspace:*",
-    "@recharge/tsconfig": "workspace:*"
+    "@recharge/tsconfig": "workspace:*",
+    "@tailwindcss/postcss": "^4"
   }
 }

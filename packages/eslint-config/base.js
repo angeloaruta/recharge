@@ -1,10 +1,22 @@
-import prettier from "eslint-config-prettier"
-import globals from "globals"
+import eslintConfigPrettier from "eslint-config-prettier"
+import onlyWarn from "eslint-plugin-only-warn"
+import turboPlugin from "eslint-plugin-turbo"
+import tseslint from "typescript-eslint"
 import js from "@eslint/js"
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
-export default [
+/**
+ * A shared ESLint configuration for the repository.
+ *
+ * @type {import("eslint").Linter.Config}
+ * */
+export const config = [
+  js.configs.recommended,
+  eslintConfigPrettier,
+  ...tseslint.configs.recommended,
   {
+    plugins: {
+      turbo: turboPlugin,
+    },
     ignores: [
       "**/node_modules/**",
       "**/dist/**",
@@ -14,20 +26,18 @@ export default [
       "**/.turbo/**",
       "**/.vercel/**",
     ],
-  },
-  js.configs.recommended,
-  {
-    languageOptions: {
-      globals: {
-        ...globals.node,
-      },
-    },
-  },
-  {
-    files: ["**/*.js", "**/*.mjs", "**/*.cjs"],
     rules: {
-      "no-console": "warn",
+      "turbo/no-undeclared-env-vars": "warn",
     },
   },
-  prettier,
+  {
+    plugins: {
+      onlyWarn,
+    },
+  },
+  {
+    ignores: ["dist/**"],
+  },
 ]
+
+export default config
