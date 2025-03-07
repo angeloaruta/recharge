@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd ../.. && bun turbo run build --filter=admin...",
+  "buildCommand": "cd ../.. && bun run build:admin",
   "framework": "nextjs",
   "outputDirectory": ".next"
 }
