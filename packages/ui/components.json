@@ -12,6 +12,7 @@
   "iconLibrary": "lucide",
   "aliases": {
     "components": "@recharge/ui/components",
+    "providers": "@recharge/ui/providers",
     "utils": "@recharge/ui/lib/utils",
     "hooks": "@recharge/ui/hooks",
     "lib": "@recharge/ui/lib",

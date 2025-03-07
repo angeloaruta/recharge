@@ -3,7 +3,7 @@
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import * as React from "react"
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
     <NextThemesProvider
       attribute="class"

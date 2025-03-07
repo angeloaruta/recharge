@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google"
 
-import { Providers } from "@/components/providers"
+import { ThemeProvider } from "@recharge/ui/providers/theme-provider"
 import "@recharge/ui/globals.css"
 
 const fontSans = Geist({
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}>
-        <Providers>{children}</Providers>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )
