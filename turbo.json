@@ -3,7 +3,7 @@
   "globalDependencies": ["**/.env.*local", ".env"],
   "tasks": {
     "build": {
-      "env": ["NODE_ENV", "DATABASE_URL", "NEXT_PUBLIC_*", "API_*"],
+      "env": ["NODE_ENV", "DATABASE_URL"],
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"]
@@ -20,21 +20,17 @@
       "outputs": []
     },
     "db:generate": {
-      "env": ["DATABASE_URL"],
       "cache": false,
       "inputs": ["./src/schema/index.ts"],
       "outputs": ["./migrations"]
     },
     "db:migrate": {
-      "env": ["DATABASE_URL"],
       "cache": false
     },
     "db:push": {
-      "env": ["DATABASE_URL"],
       "cache": false
     },
     "db:studio": {
-      "env": ["DATABASE_URL"],
       "cache": false,
       "persistent": true
     }

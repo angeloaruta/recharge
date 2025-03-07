@@ -1,11 +1,16 @@
-import { Hono } from "hono"
+import { configureOpenAPI } from "@/lib/configure-open-api"
+import createApp from "@/lib/create-app"
+import { env } from "@recharge/env"
+const app = createApp()
 
-// Create a new Hono app
-const app = new Hono().basePath("/api")
+configureOpenAPI(app)
 
-app.get("/hello", (c) => {
+app.get("/health", (c) => {
   return c.json({
-    message: "Hello Hono!",
+    status: "OK",
+    timestamp: new Date().toISOString(),
+    requestId: c.get("requestId"),
+    environment: env.NODE_ENV,
   })
 })
 

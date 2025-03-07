@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@recharge/db": "workspace:*",
-    "@recharge/env": "workspace:*",
     "@recharge/ui": "workspace:*",
     "next": "15.2.1",
     "react": "19.0.0",
