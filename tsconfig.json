@@ -1,0 +1,3 @@
+{
+    "extends": "@recharge/tsconfig/base.json"
+}

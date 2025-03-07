@@ -1,0 +1,23 @@
+# Package manager files
+bun.lock
+
+# Dependencies
+node_modules
+
+# Build outputs
+.next
+out
+dist
+build
+
+# Generated files
+*.tsbuildinfo
+next-env.d.ts
+
+# Coverage reports
+coverage
+
+# Misc
+.turbo
+.vercel
+.DS_Store
