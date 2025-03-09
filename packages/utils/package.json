@@ -14,7 +14,18 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@recharge/eslint-config": "workspace:*",
-    "@recharge/tsconfig": "workspace:*"
+    "@eslint/eslintrc": "^3.0.2",
+    "@eslint/js": "^9.0.0",
+    "@types/eslint": "^8.56.6",
+    "@types/node": "^22.13.9",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-turbo": "^1.13.0",
+    "globals": "^14.0.0",
+    "typescript": "5.8.2",
+    "typescript-eslint": "^7.4.0"
   }
 }

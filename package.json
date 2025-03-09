@@ -26,7 +26,6 @@
     "ui:add": "cd packages/ui && bunx --bun shadcn@latest add"
   },
   "devDependencies": {
-    "@recharge/eslint-config": "workspace:*",
     "@recharge/utils": "workspace:*",
     "@types/node": "^22.13.9",
     "husky": "^9.1.7",
