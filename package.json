@@ -27,7 +27,6 @@
   },
   "devDependencies": {
     "@recharge/eslint-config": "workspace:*",
-    "@recharge/tsconfig": "workspace:*",
     "@recharge/utils": "workspace:*",
     "@types/node": "^22.13.9",
     "husky": "^9.1.7",

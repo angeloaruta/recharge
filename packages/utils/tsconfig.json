@@ -1,5 +1,5 @@
 {
-  "extends": "@recharge/tsconfig/base.json",
+  "extends": "./src/tsconfig/base.json",
   "include": ["src"],
   "exclude": ["node_modules"]
 }
