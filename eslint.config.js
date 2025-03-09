@@ -1,4 +1,4 @@
-import baseConfig from "@recharge/utils/src/eslint/base.js"
+import baseConfig from "@recharge/utils/eslint/base.js"
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
