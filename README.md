@@ -80,6 +80,35 @@ The Recharge platform follows a monorepo architecture with shared packages:
 
 The apps can be deployed to Vercel or any other hosting platform that supports Next.js and Node.js.
 
+## Environment Variables
+
+This monorepo uses a centralized environment variable system. All environment variables are defined in a single `.env` file at the root of the monorepo.
+
+### Setup
+
+1. Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+
+2. Edit the `.env` file with your actual values.
+
+### How It Works
+
+- The `@recharge/utils/env` package automatically loads the root `.env` file
+- It validates environment variables using Zod
+- All apps and packages use this centralized system
+- You only need to maintain a single `.env` file
+
+### Adding New Environment Variables
+
+When adding new environment variables:
+
+1. Add them to the root `.env` file
+2. Update the schema in `packages/utils/env/index.ts`
+3. Update `.env.example` with the new variables (without real values)
+
 ## License
 
 MIT

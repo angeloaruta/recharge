@@ -1,4 +1,6 @@
+// Import environment variables from @recharge/utils/env
 import type { NextConfig } from "next"
+import "@recharge/utils/env"
 
 const nextConfig: NextConfig = {
   transpilePackages: ["@recharge/ui", "@recharge/utils"],
