@@ -138,10 +138,92 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Gradient text with fast but smooth shimmer effect */
+@keyframes gradient-shimmer-once {
+  0% {
+    background-position: -100% 50%;
+    -webkit-text-fill-color: transparent;
+  }
+  70% {
+    background-position: 200% 50%;
+    -webkit-text-fill-color: transparent;
+  }
+  70.01% {
+    background-position: 200% 50%;
+    -webkit-text-fill-color: white;
+  }
+  100% {
+    background-position: 200% 50%;
+    -webkit-text-fill-color: white;
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: -100% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.gradient-shimmer {
+  background: linear-gradient(
+    90deg,
+    #4158d0 0%,
+    #c850c0 25%,
+    #ffcc70 50%,
+    #c850c0 75%,
+    #4158d0 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: white;
+  animation: gradient-shimmer-once 5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #4158d0 0%,
+    #c850c0 25%,
+    #ffcc70 50%,
+    #c850c0 75%,
+    #4158d0 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-shimmer 8s ease-in-out infinite;
+}
+
+/* Add hover variant for text-shimmer */
+.hover\:text-shimmer:hover {
+  background: linear-gradient(
+    90deg,
+    #4158d0 0%,
+    #c850c0 25%,
+    #ffcc70 50%,
+    #c850c0 75%,
+    #4158d0 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-shimmer 8s ease-in-out infinite;
 }

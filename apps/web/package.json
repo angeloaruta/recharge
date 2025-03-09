@@ -11,6 +11,8 @@
   "dependencies": {
     "@recharge/db": "workspace:*",
     "@recharge/ui": "workspace:*",
+    "embla-carousel-autoplay": "^8.5.2",
+    "framer-motion": "^12.4.10",
     "next": "15.2.1",
     "react": "19.0.0",
     "react-dom": "19.0.0"

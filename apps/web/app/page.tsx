@@ -1,14 +1,13 @@
-import { ModeToggle } from "@recharge/ui/components/mode-toggle"
-import { Button } from "@recharge/ui/components/button"
+import { Testimonials } from "@/components/home/testimonials"
+import { LearnMore } from "@/components/home/learn-more"
+import { Hero } from "@/components/home/hero"
 
-export default function Page() {
+export default function Home() {
   return (
-    <div className="flex min-h-svh items-center justify-center">
-      <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-2xl font-bold">Hello World</h1>
-        <Button size="sm">Button</Button>
-        <ModeToggle />
-      </div>
+    <div className="flex flex-col">
+      <Hero />
+      <LearnMore />
+      <Testimonials />
     </div>
   )
 }
