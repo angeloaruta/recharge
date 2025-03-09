@@ -4,6 +4,7 @@
     "allowJs": true,
     "checkJs": false,
     "outDir": "./dist",
+    "declaration": true,
     "declarationDir": "./dist/types"
   },
   "include": ["."],
