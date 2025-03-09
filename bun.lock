@@ -7,10 +7,9 @@
         "@vercel/analytics": "^1.5.0",
       },
       "devDependencies": {
-        "@recharge/api": "workspace:*",
-        "@recharge/env": "workspace:*",
         "@recharge/eslint-config": "workspace:*",
         "@recharge/tsconfig": "workspace:*",
+        "@recharge/utils": "workspace:*",
         "@types/node": "^22.13.9",
         "husky": "^9.1.7",
         "lint-staged": "^15.4.3",
@@ -153,6 +152,18 @@
         "@types/react-dom": "19.0.4",
         "tailwindcss": "^4.0.8",
         "typescript": "5.8.2",
+      },
+    },
+    "packages/utils": {
+      "name": "@recharge/utils",
+      "version": "0.1.0",
+      "dependencies": {
+        "dotenv": "^16.4.7",
+        "zod": "^3.24.2",
+      },
+      "devDependencies": {
+        "@recharge/eslint-config": "workspace:*",
+        "@recharge/tsconfig": "workspace:*",
       },
     },
   },
@@ -408,6 +419,8 @@
     "@recharge/tsconfig": ["@recharge/tsconfig@workspace:packages/tsconfig"],
 
     "@recharge/ui": ["@recharge/ui@workspace:packages/ui"],
+
+    "@recharge/utils": ["@recharge/utils@workspace:packages/utils"],
 
     "@recharge/web": ["@recharge/web@workspace:apps/web"],
 

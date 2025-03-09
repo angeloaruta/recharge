@@ -13,9 +13,8 @@ This Turborepo includes the following apps and packages:
 
 ### Packages
 
-- `@recharge/api`: Backend API service built with Hono
 - `@recharge/db`: Database client and schema definitions
-- `@recharge/env`: Environment variable validation and typing
+- `@recharge/utils`: Shared utilities and environment variable validation
 - `@recharge/ui`: Shared UI components used across applications
 - `@recharge/eslint-config`: ESLint configurations for the monorepo
 - `@recharge/tsconfig`: TypeScript configurations for the monorepo
@@ -73,9 +72,9 @@ bun run lint
 The Recharge platform follows a monorepo architecture with shared packages:
 
 - Frontend apps are built with Next.js
-- Backend API is built with Hono
 - Database access is managed through the `@recharge/db` package
 - UI components are shared through the `@recharge/ui` package
+- Utilities and environment variables are managed through the `@recharge/utils` package
 
 ## Deployment
 
