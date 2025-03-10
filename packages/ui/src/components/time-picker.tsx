@@ -82,7 +82,7 @@ export default function TimePicker({
             role="combobox"
             aria-expanded={open}
             aria-label="Select time"
-            className="w-full justify-between"
+            className="h-9 w-full justify-between rounded-none"
           >
             {displayTime || <span className="text-muted-foreground">Select time</span>}
             <Clock className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -97,7 +97,7 @@ export default function TimePicker({
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="h-8 gap-1 text-xs"
+                    className="h-8 gap-1 rounded-none text-xs"
                     onClick={handleSelect}
                   >
                     <Check className="h-3.5 w-3.5" />
@@ -112,7 +112,7 @@ export default function TimePicker({
                     Hour
                   </Label>
                   <Select value={hours} onValueChange={setHours}>
-                    <SelectTrigger id="hours">
+                    <SelectTrigger id="hours" className="rounded-none">
                       <SelectValue placeholder="Hour" />
                     </SelectTrigger>
                     <SelectContent>
@@ -130,8 +130,8 @@ export default function TimePicker({
                     Minute
                   </Label>
                   <Select value={minutes} onValueChange={setMinutes}>
-                    <SelectTrigger id="minutes">
-                      <SelectValue placeholder="Min" />
+                    <SelectTrigger id="minutes" className="rounded-none">
+                      <SelectValue placeholder="Minute" />
                     </SelectTrigger>
                     <SelectContent>
                       {minuteOptions.map((minute) => (
@@ -145,14 +145,11 @@ export default function TimePicker({
 
                 <div className="flex-1">
                   <Label htmlFor="period" className="text-xs">
-                    AM/PM
+                    Period
                   </Label>
-                  <Select
-                    value={period}
-                    onValueChange={(value: string) => setPeriod(value as "AM" | "PM")}
-                  >
-                    <SelectTrigger id="period">
-                      <SelectValue placeholder="AM/PM" />
+                  <Select value={period} onValueChange={(value) => setPeriod(value as "AM" | "PM")}>
+                    <SelectTrigger id="period" className="rounded-none">
+                      <SelectValue placeholder="Period" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="AM">AM</SelectItem>
@@ -168,7 +165,7 @@ export default function TimePicker({
                     key={preset}
                     variant="outline"
                     size="sm"
-                    className="h-8 text-xs"
+                    className="h-8 rounded-none text-xs"
                     onClick={() => {
                       if (preset === "Current") {
                         const now = new Date()

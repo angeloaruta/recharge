@@ -54,6 +54,7 @@ const testimonials = [
 export function Testimonials() {
   return (
     <section className="relative isolate flex min-h-screen flex-col justify-center overflow-hidden">
+      <GradientBackground type="top" />
       <div className="flex flex-col items-center md:gap-12">
         <div className="text-center">
           <h2 className="text-2xl font-bold">Hear from our clients</h2>
@@ -62,6 +63,7 @@ export function Testimonials() {
           <TestimonialSlider testimonials={testimonials} />
         </div>
       </div>
+      <GradientBackground type="bottom" />
     </section>
   )
 }

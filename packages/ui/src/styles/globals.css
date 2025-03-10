@@ -117,6 +117,8 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-pulse-slow: cloud-drift-1 20s ease-in-out infinite;
+  --animate-float: cloud-drift-2 25s ease-in-out infinite alternate;
 
   @keyframes accordion-down {
     from {
@@ -135,6 +137,43 @@
       height: 0;
     }
   }
+
+  @keyframes cloud-drift-1 {
+    0% {
+      opacity: 0.3;
+      transform: translateX(-5%) scale(1);
+    }
+    33% {
+      opacity: 0.35;
+      transform: translateX(2%) scale(1.03) translateY(-1%);
+    }
+    66% {
+      opacity: 0.32;
+      transform: translateX(-3%) scale(1.02) translateY(1%);
+    }
+    100% {
+      opacity: 0.3;
+      transform: translateX(-5%) scale(1);
+    }
+  }
+
+  @keyframes cloud-drift-2 {
+    0% {
+      transform: translateX(0) translateY(0) rotate(30deg) scale(1);
+    }
+    25% {
+      transform: translateX(3%) translateY(-2%) rotate(29deg) scale(1.02);
+    }
+    50% {
+      transform: translateX(-2%) translateY(-4%) rotate(31deg) scale(1.01);
+    }
+    75% {
+      transform: translateX(1%) translateY(-1%) rotate(30.5deg) scale(0.99);
+    }
+    100% {
+      transform: translateX(0) translateY(0) rotate(30deg) scale(1);
+    }
+  }
 }
 
 @layer base {
@@ -150,19 +189,20 @@
   }
 }
 
+/* Gradient animations */
+.animate-pulse-slow {
+  animation: cloud-drift-1 20s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: cloud-drift-2 25s ease-in-out infinite alternate;
+}
+
 /* Gradient text with fast but smooth shimmer effect */
 @keyframes gradient-shimmer-once {
   0% {
     background-position: -100% 50%;
     -webkit-text-fill-color: transparent;
-  }
-  70% {
-    background-position: 200% 50%;
-    -webkit-text-fill-color: transparent;
-  }
-  70.01% {
-    background-position: 200% 50%;
-    -webkit-text-fill-color: white;
   }
   100% {
     background-position: 200% 50%;

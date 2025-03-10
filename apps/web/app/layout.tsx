@@ -1,21 +1,9 @@
-import { Geist, Geist_Mono } from "next/font/google"
-
-import { ThemeProvider } from "@recharge/ui/providers/theme-provider"
-
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import { cn } from "@recharge/ui/lib/utils"
+import { Providers } from "@/providers"
 import "@recharge/ui/globals.css"
 import { Metadata } from "next"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
 
 export const metadata: Metadata = {
   title: "Recharge App",
@@ -62,8 +50,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
-        <ThemeProvider>
+      <body className={cn("antialiased")}>
+        <Providers>
           <div className="flex min-h-screen flex-col">
             <Header />
             <div className="bg-background flex-1">
@@ -71,7 +59,7 @@ export default function RootLayout({
             </div>
             <Footer />
           </div>
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   )

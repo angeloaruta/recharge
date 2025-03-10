@@ -1,19 +1,10 @@
-import { Geist, Geist_Mono } from "next/font/google"
-
 import { ThemeProvider } from "@recharge/ui/providers/theme-provider"
+import { cn } from "@recharge/ui/lib/utils"
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
 
 import "@recharge/ui/globals.css"
 import { Metadata } from "next"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
 
 export const metadata: Metadata = {
   title: "Recharge App",
@@ -60,7 +51,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+      <body className={cn("antialiased", GeistSans.className, GeistMono.className)}>
         <div className="bg-background-200 min-h-vh relative">
           <main>
             <ThemeProvider>{children}</ThemeProvider>

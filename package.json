@@ -23,11 +23,13 @@
     "db:migrate": "turbo run db:migrate",
     "db:push": "turbo run db:push",
     "db:studio": "turbo run db:studio",
-    "ui:add": "cd packages/ui && bunx --bun shadcn@latest add"
+    "ui:add": "cd packages/ui && bunx --bun shadcn@latest add",
+    "app:check": "bun check && bun run build && bunx lint-staged"
   },
   "devDependencies": {
     "@recharge/utils": "workspace:*",
     "@types/node": "^22.13.10",
+    "chalk": "4.1.2",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "prettier": "^3.5.3",
@@ -37,8 +39,12 @@
     "typescript": "5.8.2"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.67.2",
+    "@tanstack/react-query-devtools": "^5.67.2",
     "@vercel/analytics": "^1.5.0",
-    "@vercel/speed-insights": "^1.2.0"
+    "@vercel/speed-insights": "^1.2.0",
+    "axios": "^1.8.2",
+    "geist": "^1.3.1"
   },
   "engines": {
     "node": ">=18"
