@@ -1,0 +1,17 @@
+{
+  "name": "@recharge/backend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@scalar/hono-api-reference": "^0.5.184",
+    "hono": "^4.7.4",
+    "stoker": "^1.4.2"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

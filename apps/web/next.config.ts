@@ -3,7 +3,7 @@ import type { NextConfig } from "next"
 import "@recharge/utils/env"
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@recharge/ui", "@recharge/utils"],
+  transpilePackages: ["@recharge/ui", "@recharge/utils", "@recharge/backend"],
   compiler: {
     removeConsole:
       process.env.NODE_ENV === "production"

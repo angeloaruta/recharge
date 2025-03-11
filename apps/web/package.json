@@ -9,8 +9,8 @@
     "lint": "eslint . --config eslint.config.mjs"
   },
   "dependencies": {
-    "@recharge/db": "workspace:*",
     "@recharge/ui": "workspace:*",
+    "@recharge/backend": "workspace:*",
     "embla-carousel-autoplay": "^8.5.2",
     "framer-motion": "^12.4.10",
     "next": "15.2.1",

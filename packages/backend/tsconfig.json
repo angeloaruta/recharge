@@ -1,0 +1,15 @@
+{
+  "extends": "@recharge/utils/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@recharge/backend/*": ["./src/*"]
+    },
+    "moduleResolution": "Node",
+    "module": "CommonJS",
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "include": ["."],
+  "exclude": ["node_modules", "dist"]
+}
