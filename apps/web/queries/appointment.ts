@@ -18,7 +18,7 @@ export const useGetAppointment = () => {
     queryKey: ["appointment", id, confirmationCode],
     queryFn: async () => {
       const response = await http.get<QueryResponse<Apppointment>>(
-        `/appointment/${id}?confirmation_code=${confirmationCode}`,
+        `v1/appointment/${id}/confirmation/${confirmationCode}`,
       )
       return response.data.data
     },
@@ -31,7 +31,7 @@ export const useCreateAppointment = () => {
 
   return useMutation({
     mutationFn: async (data: ApppointmentCreateSchema) => {
-      const response = await http.post<MutationResponse<Apppointment>>("/appointment", data)
+      const response = await http.post<MutationResponse<Apppointment>>("v1/appointment", data)
       return response.data
     },
     onSuccess: (data) => {

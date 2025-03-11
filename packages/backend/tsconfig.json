@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@recharge/backend/*": ["./src/*"]
+      "@recharge/backend/*": ["./src/*"],
+      "@recharge/db": ["../db/src/index.ts"],
+      "@recharge/db/*": ["../db/src/*"]
     },
     "moduleResolution": "Node",
     "module": "CommonJS",

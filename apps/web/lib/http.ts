@@ -2,7 +2,7 @@ import { env } from "@recharge/utils/env"
 import axios from "axios"
 
 export const http = axios.create({
-  baseURL: `${env.NEXT_PUBLIC_API_URL}/api`,
+  baseURL: `${env.NEXT_PUBLIC_API_URL}/api/public`,
   headers: {
     "Content-Type": "application/json",
   },

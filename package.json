@@ -27,6 +27,7 @@
     "app:check": "bun check && bun run build && bunx lint-staged"
   },
   "devDependencies": {
+    "@recharge/db": "workspace:*",
     "@recharge/utils": "workspace:*",
     "@types/node": "^22.13.10",
     "chalk": "4.1.2",

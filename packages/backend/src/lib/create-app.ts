@@ -6,6 +6,8 @@ import { requestId } from "hono/request-id"
 import { AppBindings } from "./types"
 import onError from "./on-error"
 
+export const publicPath = "/public"
+export const platformPath = "/platform"
 export default function createApp() {
   const app = createRouter()
 
