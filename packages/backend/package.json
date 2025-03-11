@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@hono/zod-openapi": "^0.19.2",
     "@scalar/hono-api-reference": "^0.5.184",
     "hono": "^4.7.4",
     "stoker": "^1.4.2"
