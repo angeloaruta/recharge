@@ -1,4 +1,4 @@
-import { GradientBackground } from "../layout/gradient-background"
+import { PageContainer } from "@/components/layout/page-container"
 import TestimonialSlider from "../testimonials-carousel"
 
 const testimonials = [
@@ -53,17 +53,16 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="relative isolate flex min-h-screen flex-col justify-center overflow-hidden">
-      <GradientBackground type="top" />
-      <div className="flex flex-col items-center md:gap-12">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold">Hear from our clients</h2>
-        </div>
-        <div className="w-full max-w-7xl">
-          <TestimonialSlider testimonials={testimonials} />
-        </div>
+    <PageContainer
+      className="overflow-hidden"
+      containerClassName="flex flex-col items-center md:gap-12"
+    >
+      <div className="text-center">
+        <h2 className="text-2xl font-bold">Hear from our clients</h2>
       </div>
-      <GradientBackground type="bottom" />
-    </section>
+      <div className="w-full max-w-7xl">
+        <TestimonialSlider testimonials={testimonials} />
+      </div>
+    </PageContainer>
   )
 }

@@ -1,7 +1,7 @@
 "use client"
 
-import { GradientBackground } from "@/components/layout/gradient-background"
 import { AppointmentDetailsCard } from "../../appointment-details-card"
+import { PageContainer } from "@/components/layout/page-container"
 import { AppointmentLoading } from "../../appointment-loading"
 import { AppointmentMissing } from "../../appointment-missing"
 import { useGetAppointment } from "@/queries/appointment"
@@ -18,12 +18,8 @@ export default function ModifyBookingPage() {
   }
 
   return (
-    <section className="from-background to-muted/30 relative isolate flex min-h-screen flex-col bg-gradient-to-b px-4 pt-24 pb-8 sm:pt-28 md:items-center md:justify-center md:py-16">
-      <GradientBackground type="top" />
-      <div className="mx-auto w-full max-w-xl">
-        <AppointmentDetailsCard appointment={appointment} />
-      </div>
-      <GradientBackground type="bottom" />
-    </section>
+    <PageContainer useMutedGradient className="md:py-16" containerClassName="max-w-xl">
+      <AppointmentDetailsCard appointment={appointment} />
+    </PageContainer>
   )
 }
