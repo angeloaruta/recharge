@@ -1,4 +1,4 @@
-import { createTable } from "../utils.ts"
+import { createTable } from "@recharge/db/utils"
 import { sql } from "drizzle-orm"
 import { nanoid } from "nanoid"
 

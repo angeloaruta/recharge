@@ -14,13 +14,3 @@ http.interceptors.request.use((config) => {
   config.headers["x-request-id"] = crypto.randomUUID()
   return config
 })
-
-http.interceptors.response.use(
-  (response) => {
-    return response
-  },
-  (error) => {
-    console.log("error", error)
-    return Promise.reject(error)
-  },
-)

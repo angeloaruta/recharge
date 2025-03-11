@@ -44,7 +44,7 @@ export const appointmentSchema = z.object({
   createdAt: z.date(),
   updatedAt: z.date(),
   status: z.enum(["pending", "confirmed", "cancelled", "completed"]),
-  confirmCode: z.string(),
+  confirmationCode: z.string(),
 })
 
 // Create the base schema first, then apply refinements
@@ -54,11 +54,31 @@ export const appointmentCreateSchema = appointmentSchema
     createdAt: true,
     updatedAt: true,
     status: true,
-    confirmCode: true,
+    confirmationCode: true,
   })
   .refine((data) => isTimeInFuture(data.time, data.date), {
     message: "Selected time has already passed. Please choose a future time.",
     path: ["time"],
   })
 
+export const appointmentUpdateSchema = appointmentSchema
+  .omit({
+    id: true,
+    createdAt: true,
+    updatedAt: true,
+    confirmationCode: true,
+  })
+  .partial()
+
 export type ApppointmentCreateSchema = z.infer<typeof appointmentCreateSchema>
+export type ApppointmentUpdateSchema = z.infer<typeof appointmentUpdateSchema>
+export type Apppointment = z.infer<typeof appointmentSchema>
+
+export const appointmentStatus = {
+  PENDING: "pending",
+  CONFIRMED: "confirmed",
+  CANCELLED: "cancelled",
+  COMPLETED: "completed",
+} as const
+
+export type AppointmentStatus = (typeof appointmentStatus)[keyof typeof appointmentStatus]

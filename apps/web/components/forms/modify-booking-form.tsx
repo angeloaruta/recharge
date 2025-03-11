@@ -1,8 +1,7 @@
 "use client"
 
-import { AlertCircle, CalendarIcon, Loader2 } from "lucide-react"
-import { useRouter, useParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { CalendarIcon, Loader2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { format } from "date-fns"
 
@@ -21,141 +20,70 @@ import { appointmentCreateSchema } from "@/schemas/appointment"
 import { Selection } from "@recharge/ui/components/selection"
 import DatePicker from "@recharge/ui/components/date-picker"
 import TimePicker from "@recharge/ui/components/time-picker"
-import { Skeleton } from "@recharge/ui/components/skeleton"
 import { Button } from "@recharge/ui/components/button"
 import { Input } from "@recharge/ui/components/input"
 import { cn } from "@recharge/ui/lib/utils"
-import { useState, useEffect } from "react"
 
-// This would be replaced with actual API call to get booking details
-const fetchBookingDetails = async (id: string): Promise<ApppointmentCreateSchema> => {
-  // Mock data - in a real app, this would fetch from your API
-  return {
-    name: "John Doe",
-    email: "john.doe@example.com",
-    phone: "555-123-4567",
-    date: new Date("2023-05-15"),
-    time: "10:00",
-    province: "Ontario",
-    city: "Toronto",
-    street: "123 Main St",
-    postalCode: "M5V 2N4",
-    notes: "Follow-up appointment",
-  }
-}
-
-export function ModifyBookingForm() {
-  const params = useParams()
-  const bookingId = params.id as string
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
+export function ModifyBookingForm({ defaultValues }: { defaultValues: ApppointmentCreateSchema }) {
   const form = useForm<ApppointmentCreateSchema>({
     resolver: zodResolver(appointmentCreateSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      date: undefined,
-      time: "",
-      province: "",
-      city: "",
-      street: "",
-      postalCode: "",
-      notes: "",
-    },
+    defaultValues,
   })
 
-  // Fetch booking details and populate form
-  useEffect(() => {
-    const loadBookingDetails = async () => {
-      try {
-        setIsLoading(true)
-        const bookingDetails = await fetchBookingDetails(bookingId)
+  const onSubmit = async (values: ApppointmentCreateSchema) => {}
 
-        // Set form values with existing booking data
-        Object.entries(bookingDetails).forEach(([key, value]) => {
-          form.setValue(key as keyof ApppointmentCreateSchema, value)
-        })
+  //   if (isLoading) {
+  //     return (
+  //       <Card className="border-muted/40 bg-background ring-muted/30 shadow-sm ring-1">
+  //         <CardHeader>
+  //           <Skeleton className="mx-auto h-8 w-3/4" />
+  //         </CardHeader>
+  //         <CardContent className="space-y-6">
+  //           <div className="space-y-4">
+  //             <Skeleton className="h-10 w-full" />
 
-        setIsLoading(false)
-      } catch (err) {
-        setError("Failed to load booking details. Please try again.")
-        setIsLoading(false)
-      }
-    }
+  //             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+  //               <Skeleton className="h-10 w-full" />
+  //               <Skeleton className="h-10 w-full" />
+  //             </div>
 
-    loadBookingDetails()
-  }, [bookingId, form])
+  //             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+  //               <Skeleton className="h-10 w-full" />
+  //               <Skeleton className="h-10 w-full" />
+  //             </div>
 
-  const onSubmit = async (values: ApppointmentCreateSchema) => {
-    try {
-      // In a real app, this would call your API to update the booking
-      console.log("Updating booking:", bookingId, values)
+  //             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+  //               <Skeleton className="h-10 w-full" />
+  //               <Skeleton className="h-10 w-full" />
+  //             </div>
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+  //             <Skeleton className="h-10 w-full" />
+  //             <Skeleton className="h-10 w-full" />
+  //             <Skeleton className="h-10 w-full" />
+  //           </div>
 
-      // Redirect to success page
-      router.push(`/booking/${bookingId}/success?modified=true`)
-    } catch (error) {
-      console.error("Error updating booking:", error)
-    }
-  }
+  //           <div className="flex flex-col space-y-2">
+  //             <Skeleton className="h-10 w-full" />
+  //             <Skeleton className="h-10 w-full" />
+  //           </div>
+  //         </CardContent>
+  //       </Card>
+  //     )
+  //   }
 
-  if (isLoading) {
-    return (
-      <Card className="border-muted/40 bg-background ring-muted/30 shadow-sm ring-1">
-        <CardHeader>
-          <Skeleton className="mx-auto h-8 w-3/4" />
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="space-y-4">
-            <Skeleton className="h-10 w-full" />
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <Skeleton className="h-10 w-full" />
-              <Skeleton className="h-10 w-full" />
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <Skeleton className="h-10 w-full" />
-              <Skeleton className="h-10 w-full" />
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <Skeleton className="h-10 w-full" />
-              <Skeleton className="h-10 w-full" />
-            </div>
-
-            <Skeleton className="h-10 w-full" />
-            <Skeleton className="h-10 w-full" />
-            <Skeleton className="h-10 w-full" />
-          </div>
-
-          <div className="flex flex-col space-y-2">
-            <Skeleton className="h-10 w-full" />
-            <Skeleton className="h-10 w-full" />
-          </div>
-        </CardContent>
-      </Card>
-    )
-  }
-
-  if (error) {
-    return (
-      <Card className="border-muted/40 bg-background ring-muted/30 shadow-sm ring-1">
-        <CardContent className="p-8">
-          <div className="flex flex-col items-center space-y-4 text-center">
-            <AlertCircle className="text-destructive h-10 w-10" />
-            <p className="text-destructive">{error}</p>
-            <Button onClick={() => router.push("/booking")}>Return to Booking</Button>
-          </div>
-        </CardContent>
-      </Card>
-    )
-  }
+  //   if (error) {
+  //     return (
+  //       <Card className="border-muted/40 bg-background ring-muted/30 shadow-sm ring-1">
+  //         <CardContent className="p-8">
+  //           <div className="flex flex-col items-center space-y-4 text-center">
+  //             <AlertCircle className="text-destructive h-10 w-10" />
+  //             <p className="text-destructive">{error}</p>
+  //             <Button onClick={() => router.push("/booking")}>Return to Booking</Button>
+  //           </div>
+  //         </CardContent>
+  //       </Card>
+  //     )
+  //   }
 
   return (
     <Card className="border-muted/40 bg-background ring-muted/30 shadow-sm ring-1">
@@ -357,14 +285,14 @@ export function ModifyBookingForm() {
                   "Update Appointment"
                 )}
               </Button>
-              <Button
+              {/* <Button
                 type="button"
                 variant="outline"
                 className="w-full"
                 onClick={() => router.back()}
               >
                 Cancel
-              </Button>
+              </Button> */}
             </div>
           </form>
         </Form>

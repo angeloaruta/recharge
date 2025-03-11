@@ -48,19 +48,21 @@ export const isTimeInFuture = (time: string, date: Date) => {
 
 // Transform date to DD/MM/YYYY ISO format
 export const formatDateToISO = (date: Date) => {
-  return date.toISOString().split("T")[0]
-}
-
-export const formatDateToLocaleString = (date: string) => {
-  return new Date(date).toLocaleString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  })
+  return date.toISOString().split("T")[0] as string
 }
 
 export const isPastDate = (date: string) => {
+  return new Date(date) < new Date()
+}
+
+export const convertTo12HourFormat = (time?: string) => {
+  if (!time) return ""
+  const [hours, minutes] = time.split(":").map(Number)
+  const period = hours! >= 12 ? "PM" : "AM"
+  const displayHour = hours! > 12 ? hours! - 12 : hours
+  return `${displayHour}:${minutes!.toString().padStart(2, "0")} ${period}`
+}
+
+export const isPast = (date: string) => {
   return new Date(date) < new Date()
 }
