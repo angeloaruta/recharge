@@ -10,9 +10,9 @@ import { toast } from "sonner"
 
 export const useGetAppointment = () => {
   const searchParams = useSearchParams()
-  const confirmationCode = getConfirmationCodeFromSearchParams(searchParams)
+  const confirmationCode = getConfirmationCodeFromSearchParams(searchParams!)
   const pathname = usePathname()
-  const id = getIdFromPathname(pathname)
+  const id = getIdFromPathname(pathname!)
 
   return useQuery({
     queryKey: ["appointment", id, confirmationCode],
