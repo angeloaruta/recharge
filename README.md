@@ -14,7 +14,7 @@ This Turborepo includes the following apps and packages:
 ### Packages
 
 - `@recharge/db`: Database client and schema definitions
-- `@recharge/utils`: Shared utilities and environment variable validation
+- `@recharge/utilities`: Shared utilities and environment variable validation
 - `@recharge/ui`: Shared UI components used across applications
 - `@recharge/eslint-config`: ESLint configurations for the monorepo
 - `@recharge/tsconfig`: TypeScript configurations for the monorepo
@@ -74,7 +74,7 @@ The Recharge platform follows a monorepo architecture with shared packages:
 - Frontend apps are built with Next.js
 - Database access is managed through the `@recharge/db` package
 - UI components are shared through the `@recharge/ui` package
-- Utilities and environment variables are managed through the `@recharge/utils` package
+- Utilities and environment variables are managed through the `@recharge/utilities` package
 
 ## Deployment
 
@@ -96,7 +96,7 @@ cp .env.example .env
 
 ### How It Works
 
-- The `@recharge/utils/env` package automatically loads the root `.env` file
+- The `@recharge/utilities/env` package automatically loads the root `.env` file
 - It validates environment variables using Zod
 - All apps and packages use this centralized system
 - You only need to maintain a single `.env` file

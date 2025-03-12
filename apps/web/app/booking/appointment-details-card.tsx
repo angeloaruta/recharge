@@ -16,7 +16,11 @@ import {
   UserIcon,
   MessageSquareIcon,
 } from "lucide-react"
-import { appointmentStatusEnum, type AppointmentStatus, type Appointment } from "@recharge/backend"
+import {
+  appointmentStatusEnum,
+  type AppointmentStatus,
+  type Appointment,
+} from "@recharge/utilities/schema"
 import { convertTo12HourFormat, formatDateToISO, isPastDate } from "@recharge/ui/lib/date"
 import { AddToCalendarButton } from "@recharge/ui/components/add-to-calendar-button"
 import { Tooltip } from "@recharge/ui/components/tooltip"

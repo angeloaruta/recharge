@@ -1,5 +1,4 @@
 import eslintConfigPrettier from "eslint-config-prettier"
-import turboConfig from "eslint-config-turbo/flat"
 import onlyWarn from "eslint-plugin-only-warn"
 import turboPlugin from "eslint-plugin-turbo"
 import tseslint from "typescript-eslint"
@@ -13,7 +12,6 @@ export const config = [
   js.configs.recommended,
   eslintConfigPrettier,
   ...tseslint.configs.recommended,
-  ...turboConfig,
   {
     plugins: {
       turbo: turboPlugin,

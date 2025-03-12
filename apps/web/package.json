@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@recharge/ui": "workspace:*",
+    "@recharge/utilities": "workspace:*",
     "@recharge/backend": "workspace:*",
     "embla-carousel-autoplay": "^8.5.2",
     "framer-motion": "^12.4.10",
@@ -18,7 +19,6 @@
     "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@recharge/utils": "workspace:*",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4"
   }

@@ -1,0 +1,55 @@
+{
+  "name": "@recharge/utilities",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./tsconfig": {
+      "import": "./dist/tsconfig/index.js",
+      "types": "./dist/tsconfig/index.d.ts"
+    },
+    "./tsconfig/*": "./dist/tsconfig/*",
+    "./eslint": {
+      "import": "./dist/eslint/index.js",
+      "types": "./dist/eslint/index.d.ts"
+    },
+    "./eslint/*": "./dist/eslint/*",
+    "./schema": {
+      "import": "./dist/schema/index.js",
+      "types": "./dist/schema/index.d.ts"
+    },
+    "./schema/*": "./dist/schema/*"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup && cp -r src/tsconfig/*.json dist/tsconfig/ && cp -r src/eslint/*.js dist/eslint/",
+    "dev": "cp -r src/tsconfig/*.json dist/tsconfig/ && cp -r src/eslint/*.js dist/eslint/ && tsup --watch",
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/zod-openapi": "^0.19.2",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.0",
+    "@eslint/js": "^9.22.0",
+    "@types/eslint": "^9.6.1",
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "globals": "^16.0.0",
+    "tsup": "^8.0.2",
+    "typescript": "5.8.2",
+    "typescript-eslint": "^8.26.0"
+  }
+}

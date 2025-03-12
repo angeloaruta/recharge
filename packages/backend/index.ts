@@ -2,7 +2,6 @@ import appointment from "./src/modules/public/appointment/appointment.index"
 import { configureOpenAPI } from "./src/lib/configure-open-api"
 import createApp from "./src/lib/create-app"
 import { handle } from "hono/vercel"
-export * from "./src/modules/public/appointment/appointment.schema"
 
 const app = createApp().basePath("/api")
 const routes = [appointment]

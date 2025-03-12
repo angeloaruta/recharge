@@ -7,10 +7,11 @@
     "build": "turbo run build",
     "build:web": "turbo run build --filter=@recharge/web",
     "build:admin": "turbo run build --filter=@recharge/admin",
-    "build:all": "bun run build:web && bun run build:admin",
+    "build:utilities": "turbo run build --filter=@recharge/utilities",
     "dev": "turbo run dev",
     "dev:web": "turbo run dev --filter=@recharge/web",
     "dev:admin": "turbo run dev --filter=@recharge/admin",
+    "dev:utilities": "turbo run dev --filter=@recharge/utilities",
     "start": "turbo run start",
     "lint": "turbo run lint",
     "format": "prettier --write .",
@@ -27,8 +28,6 @@
     "app:check": "bun check && bun run build && bunx lint-staged"
   },
   "devDependencies": {
-    "@recharge/db": "workspace:*",
-    "@recharge/utils": "workspace:*",
     "@types/node": "^22.13.10",
     "chalk": "4.1.2",
     "husky": "^9.1.7",
@@ -40,6 +39,8 @@
     "typescript": "5.8.2"
   },
   "dependencies": {
+    "@recharge/db": "workspace:*",
+    "@recharge/utilities": "workspace:*",
     "@tanstack/react-query": "^5.67.2",
     "@tanstack/react-query-devtools": "^5.67.2",
     "@vercel/analytics": "^1.5.0",

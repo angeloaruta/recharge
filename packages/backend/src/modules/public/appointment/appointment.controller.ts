@@ -3,9 +3,9 @@ import {
   GetAppointmentRoute,
   UpdateAppointmentRoute,
 } from "./appointment.routes"
+import { appointmentSchema } from "@recharge/utilities/schema"
 import { errorHandler } from "../../../utils/error-handler"
 import * as HttpStatusCodes from "stoker/http-status-codes"
-import { appointmentSchema } from "./appointment.schema"
 import AppointmentService from "./appointment.service"
 import { AppRouteHandler } from "../../../lib/types"
 

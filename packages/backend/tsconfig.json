@@ -1,11 +1,13 @@
 {
-  "extends": "@recharge/utils/tsconfig/base.json",
+  "extends": "@recharge/utilities/tsconfig/base.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@recharge/backend/*": ["./src/*"],
       "@recharge/db": ["../db/src/index.ts"],
-      "@recharge/db/*": ["../db/src/*"]
+      "@recharge/db/*": ["../db/src/*"],
+      "@recharge/utilities": ["../utilities/src/index.ts"],
+      "@recharge/utilities/*": ["../utilities/src/*"]
     },
     "moduleResolution": "Node",
     "module": "CommonJS",

@@ -14,7 +14,7 @@ The customer-facing website for the Recharge platform, built with Next.js. This 
 - [Next.js](https://nextjs.org) - React framework
 - [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
 - [@recharge/ui](../packages/ui) - Shared UI components
-- [@recharge/utils](../packages/utils) - Shared utilities
+- [@recharge/utilities](../packages/utilities) - Shared utilities
 - [@recharge/db](../packages/db) - Database client
 
 ## Getting Started

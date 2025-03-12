@@ -13,13 +13,16 @@ import {
   FormLabel,
   FormMessage,
 } from "@recharge/ui/components/form"
+import {
+  createAppointmentSchema,
+  type CreateAppointment,
+  type Appointment,
+} from "@recharge/utilities/schema"
 import { Card, CardContent, CardHeader, CardTitle } from "@recharge/ui/components/card"
 import { availableCityLocations, availableProvinceLocations } from "@/lib/location"
 import { Selection } from "@recharge/ui/components/selection"
 import DatePicker from "@recharge/ui/components/date-picker"
 import TimePicker from "@recharge/ui/components/time-picker"
-import { createAppointmentSchema } from "@recharge/backend"
-import type { CreateAppointment } from "@recharge/backend"
 import { Button } from "@recharge/ui/components/button"
 import { Input } from "@recharge/ui/components/input"
 import { cn } from "@recharge/ui/lib/utils"

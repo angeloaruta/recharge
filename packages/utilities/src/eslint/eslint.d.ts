@@ -19,3 +19,8 @@ declare module "./eslint.config.js" {
   const eslintConfig: any[]
   export default eslintConfig
 }
+
+declare module "*.js" {
+  const content: any
+  export default content
+}

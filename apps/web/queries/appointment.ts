@@ -1,6 +1,6 @@
+import { type Appointment, type CreateAppointment } from "@recharge/utilities/schema"
 import type { ErrorResponse, MutationResponse, QueryResponse } from "@/types/common"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { Appointment, CreateAppointment } from "@recharge/backend"
 import { getConfirmationCodeFromSearchParams } from "@/lib/utils"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { getIdFromPathname } from "@/lib/utils"
