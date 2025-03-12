@@ -5,7 +5,7 @@ import {
 } from "./appointment.routes"
 import { errorHandler } from "../../../utils/error-handler"
 import * as HttpStatusCodes from "stoker/http-status-codes"
-import { appointmentSchema } from "./apppointment.schema"
+import { appointmentSchema } from "./appointment.schema"
 import AppointmentService from "./appointment.service"
 import { AppRouteHandler } from "../../../lib/types"
 

@@ -15,21 +15,21 @@ import {
 } from "@recharge/ui/components/form"
 import { Card, CardContent, CardHeader, CardTitle } from "@recharge/ui/components/card"
 import { availableCityLocations, availableProvinceLocations } from "@/lib/location"
-import type { ApppointmentCreateSchema } from "@/schemas/appointment"
-import { appointmentCreateSchema } from "@/schemas/appointment"
 import { Selection } from "@recharge/ui/components/selection"
 import DatePicker from "@recharge/ui/components/date-picker"
 import TimePicker from "@recharge/ui/components/time-picker"
 import { useCreateAppointment } from "@/queries/appointment"
+import { createAppointmentSchema } from "@recharge/backend"
+import type { CreateAppointment } from "@recharge/backend"
 import { Button } from "@recharge/ui/components/button"
 import { Input } from "@recharge/ui/components/input"
 import { cn } from "@recharge/ui/lib/utils"
 
-const defaultValues: ApppointmentCreateSchema = {
+const defaultValues: CreateAppointment = {
   name: "",
   email: "",
   phone: "",
-  date: new Date(),
+  date: "",
   time: "",
   street: "",
   city: "",
@@ -40,13 +40,13 @@ const defaultValues: ApppointmentCreateSchema = {
 
 export function BookingForm() {
   const { mutate: createAppointment, isPending: isCreatingAppointment } = useCreateAppointment()
-  const form = useForm<ApppointmentCreateSchema>({
-    resolver: zodResolver(appointmentCreateSchema),
+  const form = useForm<CreateAppointment>({
+    resolver: zodResolver(createAppointmentSchema),
     defaultValues,
     mode: "onBlur",
   })
 
-  const onSubmit = async (values: ApppointmentCreateSchema) => {
+  const onSubmit = async (values: CreateAppointment) => {
     createAppointment(values, {
       onSuccess: () => {
         form.reset(defaultValues)
@@ -145,7 +145,7 @@ export function BookingForm() {
                                 <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                               </Button>
                             }
-                            value={field.value}
+                            value={field.value ? new Date(field.value) : new Date()}
                             onChange={field.onChange}
                           />
                         </FormControl>

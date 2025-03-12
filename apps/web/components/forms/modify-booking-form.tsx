@@ -15,22 +15,22 @@ import {
 } from "@recharge/ui/components/form"
 import { Card, CardContent, CardHeader, CardTitle } from "@recharge/ui/components/card"
 import { availableCityLocations, availableProvinceLocations } from "@/lib/location"
-import type { ApppointmentCreateSchema } from "@/schemas/appointment"
-import { appointmentCreateSchema } from "@/schemas/appointment"
 import { Selection } from "@recharge/ui/components/selection"
 import DatePicker from "@recharge/ui/components/date-picker"
 import TimePicker from "@recharge/ui/components/time-picker"
+import { createAppointmentSchema } from "@recharge/backend"
+import type { CreateAppointment } from "@recharge/backend"
 import { Button } from "@recharge/ui/components/button"
 import { Input } from "@recharge/ui/components/input"
 import { cn } from "@recharge/ui/lib/utils"
 
-export function ModifyBookingForm({ defaultValues }: { defaultValues: ApppointmentCreateSchema }) {
-  const form = useForm<ApppointmentCreateSchema>({
-    resolver: zodResolver(appointmentCreateSchema),
+export function ModifyBookingForm({ defaultValues }: { defaultValues: CreateAppointment }) {
+  const form = useForm<CreateAppointment>({
+    resolver: zodResolver(createAppointmentSchema),
     defaultValues,
   })
 
-  const onSubmit = async (values: ApppointmentCreateSchema) => {}
+  const onSubmit = async (values: CreateAppointment) => {}
 
   //   if (isLoading) {
   //     return (
@@ -160,7 +160,7 @@ export function ModifyBookingForm({ defaultValues }: { defaultValues: Apppointme
                           {field.value && (
                             <DatePicker
                               trigger={<div />}
-                              value={field.value}
+                              value={field.value ? new Date(field.value) : new Date()}
                               onChange={field.onChange}
                             />
                           )}

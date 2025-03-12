@@ -1,6 +1,6 @@
 import type { ErrorResponse, MutationResponse, QueryResponse } from "@/types/common"
-import type { Apppointment, ApppointmentCreateSchema } from "@/schemas/appointment"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { Appointment, CreateAppointment } from "@recharge/backend"
 import { getConfirmationCodeFromSearchParams } from "@/lib/utils"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { getIdFromPathname } from "@/lib/utils"
@@ -17,7 +17,7 @@ export const useGetAppointment = () => {
   return useQuery({
     queryKey: ["appointment", id, confirmationCode],
     queryFn: async () => {
-      const response = await http.get<QueryResponse<Apppointment>>(
+      const response = await http.get<QueryResponse<Appointment>>(
         `v1/appointment/${id}/confirmation/${confirmationCode}`,
       )
       return response.data.data
@@ -30,8 +30,8 @@ export const useCreateAppointment = () => {
   const router = useRouter()
 
   return useMutation({
-    mutationFn: async (data: ApppointmentCreateSchema) => {
-      const response = await http.post<MutationResponse<Apppointment>>("v1/appointment", data)
+    mutationFn: async (data: CreateAppointment) => {
+      const response = await http.post<MutationResponse<Appointment>>("v1/appointment", data)
       return response.data
     },
     onSuccess: (data) => {

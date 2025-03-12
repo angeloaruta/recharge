@@ -2,7 +2,7 @@ import {
   appointmentSchema,
   createAppointmentSchema,
   updateAppointmentSchema,
-} from "./apppointment.schema"
+} from "./appointment.schema"
 import { jsonContent, jsonContentRequired } from "stoker/openapi/helpers"
 import { createMessageObjectSchema } from "stoker/openapi/schemas"
 import { responseSchema } from "../../../utils/common-schema"

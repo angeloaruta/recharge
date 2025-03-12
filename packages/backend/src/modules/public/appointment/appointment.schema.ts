@@ -1,6 +1,6 @@
 import { z } from "@hono/zod-openapi"
 
-const appointmentStatusEnum = z.enum(["pending", "confirmed", "cancelled", "completed"])
+export const appointmentStatusEnum = z.enum(["pending", "confirmed", "cancelled", "completed"])
 
 export const appointmentSchema = z
   .object({
@@ -88,3 +88,4 @@ export const updateAppointmentSchema = appointmentSchema
 export type Appointment = z.infer<typeof appointmentSchema>
 export type CreateAppointment = z.infer<typeof createAppointmentSchema>
 export type UpdateAppointment = z.infer<typeof updateAppointmentSchema>
+export type AppointmentStatus = z.infer<typeof appointmentStatusEnum>

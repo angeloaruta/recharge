@@ -1,8 +1,4 @@
-import {
-  CreateAppointment,
-  UpdateAppointment,
-  updateAppointmentSchema,
-} from "./apppointment.schema"
+import { CreateAppointment, UpdateAppointment, updateAppointmentSchema } from "./appointment.schema"
 import { checkIfNoValidFields, getUpdateData } from "../../../utils/validation"
 import { appointment as appointmentTable } from "@recharge/db/schema"
 import * as HttpStatusCodes from "stoker/http-status-codes"

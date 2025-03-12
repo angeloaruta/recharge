@@ -16,7 +16,7 @@ import {
   UserIcon,
   MessageSquareIcon,
 } from "lucide-react"
-import { appointmentStatus, type AppointmentStatus, type Apppointment } from "@/schemas/appointment"
+import { appointmentStatusEnum, type AppointmentStatus, type Appointment } from "@recharge/backend"
 import { convertTo12HourFormat, formatDateToISO, isPastDate } from "@recharge/ui/lib/date"
 import { AddToCalendarButton } from "@recharge/ui/components/add-to-calendar-button"
 import { Tooltip } from "@recharge/ui/components/tooltip"
@@ -31,7 +31,7 @@ const statusColorMap: Record<AppointmentStatus, string> = {
 }
 
 interface AppointmentDetailsCardProps {
-  appointment: Apppointment
+  appointment: Appointment
 }
 
 export function AppointmentDetailsCard({ appointment }: AppointmentDetailsCardProps) {
@@ -66,7 +66,7 @@ export function AppointmentDetailsCard({ appointment }: AppointmentDetailsCardPr
         </div>
 
         <CardDescription>
-          {(isPast || appointment.status === appointmentStatus.CANCELLED) && (
+          {(isPast || appointment.status === appointmentStatusEnum.Enum.cancelled) && (
             <div className="ml-auto flex w-full gap-2 sm:w-auto">
               <p className="text-muted-foreground text-[10px]">
                 This appointment has already {isPast ? "passed" : "been cancelled"}.
@@ -143,7 +143,7 @@ export function AppointmentDetailsCard({ appointment }: AppointmentDetailsCardPr
       </CardContent>
 
       <CardFooter className="flex flex-col space-y-3 px-6 pb-6">
-        {!isPast && appointment.status !== appointmentStatus.CANCELLED && (
+        {!isPast && appointment.status !== appointmentStatusEnum.Enum.cancelled && (
           <Button className="w-full" asChild>
             <Link
               href={`/booking/${appointment.id}/edit?confirmationCode=${appointment.confirmationCode}`}
