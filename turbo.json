@@ -8,30 +8,37 @@
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
     "@recharge/utilities#build": {
+      "env": ["NODE_ENV", "DATABASE_URL"],
       "dependsOn": [],
       "outputs": ["dist/**"]
     },
     "@recharge/admin#build": {
+      "env": ["NODE_ENV", "DATABASE_URL"],
       "dependsOn": ["@recharge/utilities#build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "@recharge/web#build": {
+      "env": ["NODE_ENV", "DATABASE_URL"],
       "dependsOn": ["@recharge/utilities#build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "dev": {
+      "env": ["NODE_ENV", "DATABASE_URL"],
       "cache": false,
       "persistent": true
     },
     "@recharge/utilities#dev": {
+      "env": ["NODE_ENV", "DATABASE_URL"],
       "dependsOn": [],
       "outputs": ["dist/**"]
     },
     "@recharge/admin#dev": {
+      "env": ["NODE_ENV", "DATABASE_URL"],
       "dependsOn": ["@recharge/utilities#build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "@recharge/web#dev": {
+      "env": ["NODE_ENV", "DATABASE_URL"],
       "dependsOn": ["@recharge/utilities#build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
@@ -43,17 +50,21 @@
       "outputs": []
     },
     "db:generate": {
+      "env": ["DATABASE_URL"],
       "cache": false,
       "inputs": ["./src/schema/index.ts"],
       "outputs": ["./migrations"]
     },
     "db:migrate": {
+      "env": ["DATABASE_URL"],
       "cache": false
     },
     "db:push": {
+      "env": ["DATABASE_URL"],
       "cache": false
     },
     "db:studio": {
+      "env": ["DATABASE_URL"],
       "cache": false,
       "persistent": true
     }
