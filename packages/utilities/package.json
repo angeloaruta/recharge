@@ -26,9 +26,8 @@
     "dist/**"
   ],
   "scripts": {
-    "copy-assets": "copyfiles -u 1 \"src/eslint/*.js\" dist/",
-    "build": "tsup && bun run copy-assets",
-    "dev": "bun run copy-assets && tsup --watch",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "lint": "eslint .",
     "check-types": "tsc --noEmit"
   },
