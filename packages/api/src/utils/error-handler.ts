@@ -7,6 +7,7 @@ export const errorHandler = (
   error: unknown,
   requestId: string | undefined = crypto.randomUUID(),
 ) => {
+  console.log(error)
   if (error instanceof z.ZodError) {
     return c.json(
       {

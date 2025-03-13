@@ -82,6 +82,7 @@ export const updateAppointmentSchema = appointmentSchema
     createdAt: true,
     updatedAt: true,
     confirmationCode: true,
+    status: true,
   })
   .partial()
 

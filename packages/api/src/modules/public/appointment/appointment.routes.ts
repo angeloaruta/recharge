@@ -4,9 +4,8 @@ import {
   updateAppointmentSchema,
 } from "@recharge/utilities/schema"
 import { jsonContent, jsonContentRequired } from "stoker/openapi/helpers"
-import { createMessageObjectSchema } from "stoker/openapi/schemas"
-import { responseSchema } from "../../../utils/common-schema"
 import * as HttpStatusCodes from "stoker/http-status-codes"
+import { routeResponse } from "../../../utils/helpers"
 import { createRoute } from "@hono/zod-openapi"
 
 const tags = ["Appointment"]
@@ -19,21 +18,7 @@ export const getAppointment = createRoute({
   request: {
     params: appointmentSchema.pick({ id: true, confirmationCode: true }),
   },
-  responses: {
-    [HttpStatusCodes.OK]: jsonContent(responseSchema(appointmentSchema), "Appointment"),
-    [HttpStatusCodes.NOT_FOUND]: jsonContent(
-      createMessageObjectSchema("Appointment not found"),
-      "Appointment not found",
-    ),
-    [HttpStatusCodes.BAD_REQUEST]: jsonContent(
-      createMessageObjectSchema("Bad request"),
-      "Bad request",
-    ),
-    [HttpStatusCodes.INTERNAL_SERVER_ERROR]: jsonContent(
-      createMessageObjectSchema("Internal server error"),
-      "Internal server error",
-    ),
-  },
+  responses: routeResponse(HttpStatusCodes.OK, appointmentSchema),
 })
 
 export type GetAppointmentRoute = typeof getAppointment
@@ -46,18 +31,9 @@ export const createAppointment = createRoute({
   request: {
     body: jsonContentRequired(createAppointmentSchema, "Create Appointment"),
   },
-  responses: {
-    [HttpStatusCodes.CREATED]: jsonContent(responseSchema(appointmentSchema), "Appointment"),
-    [HttpStatusCodes.BAD_REQUEST]: jsonContent(
-      createMessageObjectSchema("Bad request"),
-      "Bad request",
-    ),
-    [HttpStatusCodes.INTERNAL_SERVER_ERROR]: jsonContent(
-      createMessageObjectSchema("Internal server error"),
-      "Internal server error",
-    ),
-  },
+  responses: routeResponse(HttpStatusCodes.CREATED, appointmentSchema),
 })
+
 export type CreateAppointmentRoute = typeof createAppointment
 
 export const updateAppointment = createRoute({
@@ -69,21 +45,21 @@ export const updateAppointment = createRoute({
     params: appointmentSchema.pick({ id: true, confirmationCode: true }),
     body: jsonContent(updateAppointmentSchema, "Update Appointment"),
   },
-  responses: {
-    [HttpStatusCodes.OK]: jsonContent(responseSchema(appointmentSchema), "Appointment"),
-    [HttpStatusCodes.BAD_REQUEST]: jsonContent(
-      createMessageObjectSchema("Bad request"),
-      "Bad request",
-    ),
-    [HttpStatusCodes.INTERNAL_SERVER_ERROR]: jsonContent(
-      createMessageObjectSchema("Internal server error"),
-      "Internal server error",
-    ),
-    [HttpStatusCodes.NOT_FOUND]: jsonContent(
-      createMessageObjectSchema("Appointment not found"),
-      "Appointment not found",
-    ),
-  },
+  responses: routeResponse(HttpStatusCodes.OK, appointmentSchema),
 })
 
 export type UpdateAppointmentRoute = typeof updateAppointment
+
+export const cancelAppointment = createRoute({
+  tags,
+  method: "post",
+  path: "/:id/cancel",
+  description: "Cancel Appointment",
+  request: {
+    params: appointmentSchema.pick({ id: true, confirmationCode: true }),
+    body: jsonContent(appointmentSchema.pick({ status: true }), "Cancel Appointment"),
+  },
+  responses: routeResponse(HttpStatusCodes.OK, appointmentSchema),
+})
+
+export type CancelAppointmentRoute = typeof cancelAppointment

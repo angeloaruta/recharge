@@ -1,9 +1,11 @@
 import {
+  AppointmentStatus,
   CreateAppointment,
   UpdateAppointment,
+  appointmentSchema,
   updateAppointmentSchema,
 } from "@recharge/utilities/schema"
-import { checkIfNoValidFields, getUpdateData } from "../../../utils/validation"
+import { checkIfNoValidFields, getUpdateData, safeParse } from "../../../utils/validation"
 import { appointment as appointmentTable } from "@recharge/db/schema"
 import * as HttpStatusCodes from "stoker/http-status-codes"
 import { and, eq } from "drizzle-orm"
@@ -24,7 +26,9 @@ class AppointmentService {
       })
     }
 
-    return appointment
+    const parsedAppointment = safeParse(appointmentSchema, appointment)
+
+    return parsedAppointment
   }
 
   async createAppointment(body: CreateAppointment) {
@@ -36,7 +40,9 @@ class AppointmentService {
       })
     }
 
-    return appointment
+    const parsedAppointment = safeParse(appointmentSchema, appointment)
+
+    return parsedAppointment
   }
 
   async updateAppointment(
@@ -55,9 +61,11 @@ class AppointmentService {
       })
     }
 
+    const updatedAt = new Date()
+
     const [appointment] = await db
       .update(appointmentTable)
-      .set(updateData)
+      .set({ ...updateData, updatedAt })
       .where(
         and(
           eq(appointmentTable.id, data.id),
@@ -72,7 +80,37 @@ class AppointmentService {
       })
     }
 
-    return appointment
+    const parsedAppointment = safeParse(appointmentSchema, appointment)
+
+    return parsedAppointment
+  }
+
+  async cancelAppointment(
+    data: {
+      id: string
+      confirmationCode: string
+    },
+    status: AppointmentStatus,
+  ) {
+    const { id, confirmationCode } = data
+
+    const [appointment] = await db
+      .update(appointmentTable)
+      .set({ status })
+      .where(
+        and(eq(appointmentTable.id, id), eq(appointmentTable.confirmationCode, confirmationCode)),
+      )
+      .returning()
+
+    if (!appointment) {
+      throw Object.assign(new Error("Appointment not found"), {
+        status: HttpStatusCodes.NOT_FOUND,
+      })
+    }
+
+    const parsedAppointment = safeParse(appointmentSchema, appointment)
+
+    return parsedAppointment
   }
 }
 

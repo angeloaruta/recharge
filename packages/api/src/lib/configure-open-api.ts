@@ -12,7 +12,7 @@ export function configureOpenAPI(app: AppOpenAPI) {
     openapi: "3.1.0",
     info: {
       version: packageJson.version,
-      title: "Recharge Backend API",
+      title: "Recharge API",
     },
   })
   app.get(
