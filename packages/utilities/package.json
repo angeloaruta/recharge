@@ -11,11 +11,6 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./tsconfig": {
-      "import": "./dist/tsconfig/index.js",
-      "types": "./dist/tsconfig/index.d.ts"
-    },
-    "./tsconfig/*": "./dist/tsconfig/*",
     "./eslint": {
       "import": "./dist/eslint/index.js",
       "types": "./dist/eslint/index.d.ts"
@@ -31,8 +26,9 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup && cp -r src/tsconfig/*.json dist/tsconfig/ && cp -r src/eslint/*.js dist/eslint/",
-    "dev": "cp -r src/tsconfig/*.json dist/tsconfig/ && cp -r src/eslint/*.js dist/eslint/ && tsup --watch",
+    "copy-assets": "copyfiles -u 1 \"src/eslint/*.js\" dist/",
+    "build": "tsup && bun run copy-assets",
+    "dev": "bun run copy-assets && tsup --watch",
     "lint": "eslint .",
     "check-types": "tsc --noEmit"
   },

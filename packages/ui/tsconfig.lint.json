@@ -1,5 +1,5 @@
 {
-  "extends": "@recharge/utilities/tsconfig/react-library.json",
+  "extends": "@recharge/tsconfig/react-library.json",
   "compilerOptions": {
     "outDir": "dist"
   },
