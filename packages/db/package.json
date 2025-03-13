@@ -11,8 +11,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@recharge/utilities": "workspace:*",
     "drizzle-orm": "^0.40.0",
+    "nanoid": "^5.0.6",
     "postgres": "^3.4.5"
   },
   "devDependencies": {

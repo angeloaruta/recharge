@@ -2,6 +2,12 @@
 
 A collection of utility functions for the Recharge application.
 
+## Features
+
+- Common utility functions
+- Schema validation helpers
+- Type definitions
+
 ## Installation
 
 ```bash
@@ -10,6 +16,8 @@ bun add @recharge/utilities@workspace:*
 ```
 
 ## Usage
+
+### General Utilities
 
 ```typescript
 import { sum, formatCurrency, delay } from "@recharge/utilities"
@@ -23,6 +31,30 @@ const euroPrice = formatCurrency(19.99, "EUR") // €19.99
 
 // Async delay
 await delay(1000) // Wait for 1 second
+```
+
+### Schema Utilities
+
+```typescript
+import { createSchema } from "@recharge/utilities/schema"
+
+// Create a validated schema
+const userSchema = createSchema({
+  name: "User",
+  properties: {
+    id: { type: "string", format: "uuid" },
+    email: { type: "string", format: "email" },
+    age: { type: "number", minimum: 18 },
+  },
+  required: ["id", "email"],
+})
+
+// Use the schema for validation
+const validUser = userSchema.parse({
+  id: "123e4567-e89b-12d3-a456-426614174000",
+  email: "user@example.com",
+  age: 25,
+})
 ```
 
 ## Development

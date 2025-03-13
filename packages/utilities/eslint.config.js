@@ -1,8 +1,11 @@
-import js from "@eslint/js"
+import baseConfig from "@recharge/eslint-config/base.js"
 
-export default [
-  js.configs.recommended,
+/** @type {import("eslint").Linter.FlatConfig[]} */
+const config = [
+  ...baseConfig,
   {
-    ignores: ["node_modules", "dist"],
+    ignores: ["*.d.ts"],
   },
 ]
+
+export default config
