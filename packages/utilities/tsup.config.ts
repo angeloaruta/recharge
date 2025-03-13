@@ -9,4 +9,14 @@ export default defineConfig({
   clean: true,
   treeshake: true,
   minify: false,
+  noExternal: [
+    "eslint-config-prettier",
+    "eslint-plugin-react-hooks",
+    "eslint-plugin-react",
+    "typescript-eslint",
+    "globals",
+    "@eslint/js",
+  ],
+  platform: "node",
+  target: "node18",
 })

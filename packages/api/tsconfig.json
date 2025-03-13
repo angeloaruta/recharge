@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@recharge/backend/*": ["./src/*"],
+      "@recharge/api/*": ["./src/*"],
       "@recharge/db": ["../db/src/index.ts"],
       "@recharge/db/*": ["../db/src/*"],
       "@recharge/utilities": ["../utilities/src/index.ts"],

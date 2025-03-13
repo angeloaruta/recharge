@@ -43,7 +43,7 @@
       "name": "@recharge/web",
       "version": "0.1.0",
       "dependencies": {
-        "@recharge/backend": "workspace:*",
+        "@recharge/api": "workspace:*",
         "@recharge/ui": "workspace:*",
         "@recharge/utilities": "workspace:*",
         "embla-carousel-autoplay": "^8.5.2",
@@ -57,8 +57,8 @@
         "@types/react-dom": "19.0.4",
       },
     },
-    "packages/backend": {
-      "name": "@recharge/backend",
+    "packages/api": {
+      "name": "@recharge/api",
       "version": "0.0.0",
       "dependencies": {
         "@hono/zod-openapi": "^0.19.2",
@@ -78,6 +78,10 @@
       "devDependencies": {
         "drizzle-kit": "^0.30.5",
       },
+    },
+    "packages/tsconfig": {
+      "name": "@recharge/tsconfig",
+      "version": "0.1.0",
     },
     "packages/ui": {
       "name": "@recharge/ui",
@@ -395,9 +399,11 @@
 
     "@recharge/admin": ["@recharge/admin@workspace:apps/admin"],
 
-    "@recharge/backend": ["@recharge/backend@workspace:packages/backend"],
+    "@recharge/api": ["@recharge/api@workspace:packages/api"],
 
     "@recharge/db": ["@recharge/db@workspace:packages/db"],
+
+    "@recharge/tsconfig": ["@recharge/tsconfig@workspace:packages/tsconfig"],
 
     "@recharge/ui": ["@recharge/ui@workspace:packages/ui"],
 

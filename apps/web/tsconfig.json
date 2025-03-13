@@ -5,7 +5,7 @@
     "paths": {
       "@/*": ["./*"],
       "@recharge/ui/*": ["../../packages/ui/src/*"],
-      "@recharge/backend": ["../../packages/backend/index.ts"]
+      "@recharge/api": ["../../packages/api/index.ts"]
     },
     "plugins": [
       {

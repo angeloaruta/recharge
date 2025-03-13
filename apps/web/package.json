@@ -11,7 +11,7 @@
   "dependencies": {
     "@recharge/ui": "workspace:*",
     "@recharge/utilities": "workspace:*",
-    "@recharge/backend": "workspace:*",
+    "@recharge/api": "workspace:*",
     "embla-carousel-autoplay": "^8.5.2",
     "framer-motion": "^12.4.10",
     "next": "15.2.1",

@@ -16,6 +16,7 @@
       "types": "./dist/eslint/index.d.ts"
     },
     "./eslint/*": "./dist/eslint/*",
+    "./dist/eslint/*": "./dist/eslint/*",
     "./schema": {
       "import": "./dist/schema/index.js",
       "types": "./dist/schema/index.d.ts"
@@ -26,7 +27,8 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && bun run copy-eslint-files",
+    "copy-eslint-files": "mkdir -p dist/eslint && cp src/eslint/*.js dist/eslint/",
     "dev": "tsup --watch",
     "lint": "eslint .",
     "check-types": "tsc --noEmit"

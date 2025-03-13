@@ -1,4 +1,4 @@
-import handler from "@recharge/backend"
+import handler from "@recharge/api"
 
 export const runtime = "nodejs"
 
