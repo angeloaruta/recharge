@@ -1,9 +1,11 @@
-import baseConfig from "@recharge/utilities/dist/eslint/base.js"
+import baseConfig from "@recharge/eslint-config/base.js"
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
-export default [
+const config = [
   ...baseConfig,
   {
     ignores: ["packages/*/eslint.config.js", "apps/*/eslint.config.mjs"],
   },
 ]
+
+export default config

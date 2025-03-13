@@ -1,0 +1,19 @@
+{
+  "name": "@recharge/eslint-config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "files": [
+    "*.js"
+  ],
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.0",
+    "@eslint/js": "^9.22.0",
+    "eslint": "^9.22.0",
+    "eslint-config-next": "^15.2.2",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "globals": "^16.0.0",
+    "typescript-eslint": "^8.26.0"
+  }
+}
