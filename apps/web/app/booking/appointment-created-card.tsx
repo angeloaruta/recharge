@@ -1,8 +1,8 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@recharge/ui/components/card"
 import { AddToCalendarButton } from "@recharge/ui/components/add-to-calendar-button"
 import { convertTo12HourFormat, formatDateToISO } from "@recharge/ui/lib/date"
-import type { Appointment } from "@recharge/utilities/schema"
 import { Button } from "@recharge/ui/components/button"
+import type { Appointment } from "@recharge/db/schema"
 import { CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 

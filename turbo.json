@@ -2,7 +2,7 @@
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "build": {
-      "env": ["NODE_ENV", "DATABASE_URL"],
+      "env": ["NODE_ENV", "DATABASE_URL", "BETTER_AUTH_SECRET", "BETTER_AUTH_URL"],
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
@@ -13,7 +13,7 @@
       "outputs": ["dist/**"]
     },
     "@recharge/admin#build": {
-      "env": ["NODE_ENV", "DATABASE_URL"],
+      "env": ["NODE_ENV", "DATABASE_URL", "BETTER_AUTH_SECRET", "BETTER_AUTH_URL"],
       "dependsOn": ["@recharge/utilities#build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
@@ -67,6 +67,14 @@
       "env": ["DATABASE_URL"],
       "cache": false,
       "persistent": true
+    },
+    "auth:generate": {
+      "cache": false,
+      "env": ["DATABASE_URL", "NODE_ENV", "BETTER_AUTH_SECRET", "BETTER_AUTH_URL"]
+    },
+    "auth:migrate": {
+      "cache": false,
+      "env": ["DATABASE_URL", "NODE_ENV", "BETTER_AUTH_SECRET", "BETTER_AUTH_URL"]
     }
   }
 }

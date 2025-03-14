@@ -1,11 +1,11 @@
 "use client"
 
 import {
-  appointmentStatusEnum,
+  appointmentStatusEnumSchema,
   type AppointmentStatus,
   type Appointment,
   UpdateAppointment,
-} from "@recharge/utilities/schema"
+} from "@recharge/db/schema"
 import {
   CalendarIcon,
   ClockIcon,
@@ -61,7 +61,7 @@ export function AppointmentDetailsCard({ appointment }: AppointmentDetailsCardPr
   const date = appointment.date ? formatDateToISO(new Date(appointment.date)) : ""
 
   const isPast = isPastDate(date)
-  const isCancelled = appointment.status === appointmentStatusEnum.Enum.cancelled
+  const isCancelled = appointment.status === appointmentStatusEnumSchema.Enum.cancelled
   const isDisabled = isCancelling || isUpdating
 
   const handleCancelAppointment = () => {

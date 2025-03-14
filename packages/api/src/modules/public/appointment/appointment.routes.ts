@@ -1,9 +1,9 @@
 import {
-  appointmentSchema,
-  cancelAppointmentSchema,
-  createAppointmentSchema,
-  updateAppointmentSchema,
-} from "@recharge/utilities/schema"
+  appointmentSelectSchema,
+  appointmentInsertSchema,
+  appointmentUpdateSchema,
+  appointmentCancelSchema,
+} from "@recharge/db/schema"
 import { jsonContent, jsonContentRequired } from "stoker/openapi/helpers"
 import * as HttpStatusCodes from "stoker/http-status-codes"
 import { routeResponse } from "../../../utils/helpers"
@@ -17,9 +17,9 @@ export const getAppointment = createRoute({
   path: "/:id/confirmation/:confirmationCode",
   description: "Get Appointment",
   request: {
-    params: appointmentSchema.pick({ id: true, confirmationCode: true }),
+    params: appointmentSelectSchema.pick({ id: true, confirmationCode: true }),
   },
-  responses: routeResponse(HttpStatusCodes.OK, appointmentSchema),
+  responses: routeResponse(HttpStatusCodes.OK, appointmentSelectSchema),
 })
 
 export type GetAppointmentRoute = typeof getAppointment
@@ -30,9 +30,9 @@ export const createAppointment = createRoute({
   path: "/",
   description: "Create Appointment",
   request: {
-    body: jsonContentRequired(createAppointmentSchema, "Create Appointment"),
+    body: jsonContentRequired(appointmentInsertSchema, "Create Appointment"),
   },
-  responses: routeResponse(HttpStatusCodes.CREATED, appointmentSchema),
+  responses: routeResponse(HttpStatusCodes.CREATED, appointmentSelectSchema),
 })
 
 export type CreateAppointmentRoute = typeof createAppointment
@@ -43,10 +43,10 @@ export const updateAppointment = createRoute({
   path: "/:id/confirmation/:confirmationCode",
   description: "Update Appointment",
   request: {
-    params: appointmentSchema.pick({ id: true, confirmationCode: true }),
-    body: jsonContent(updateAppointmentSchema, "Update Appointment"),
+    params: appointmentSelectSchema.pick({ id: true, confirmationCode: true }),
+    body: jsonContent(appointmentUpdateSchema, "Update Appointment"),
   },
-  responses: routeResponse(HttpStatusCodes.OK, appointmentSchema),
+  responses: routeResponse(HttpStatusCodes.OK, appointmentSelectSchema),
 })
 
 export type UpdateAppointmentRoute = typeof updateAppointment
@@ -57,10 +57,10 @@ export const cancelAppointment = createRoute({
   path: "/:id/confirmation/:confirmationCode/cancel",
   description: "Cancel Appointment",
   request: {
-    params: appointmentSchema.pick({ id: true, confirmationCode: true }),
-    body: jsonContent(cancelAppointmentSchema, "Cancel Appointment"),
+    params: appointmentSelectSchema.pick({ id: true, confirmationCode: true }),
+    body: jsonContent(appointmentCancelSchema, "Cancel Appointment"),
   },
-  responses: routeResponse(HttpStatusCodes.OK, appointmentSchema),
+  responses: routeResponse(HttpStatusCodes.OK, appointmentSelectSchema),
 })
 
 export type CancelAppointmentRoute = typeof cancelAppointment

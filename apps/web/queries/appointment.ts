@@ -1,10 +1,9 @@
 import {
   type Appointment,
   type CreateAppointment,
-  AppointmentStatus,
-  appointmentStatusEnum,
+  appointmentStatusEnumSchema,
   UpdateAppointment,
-} from "@recharge/utilities/schema"
+} from "@recharge/db/schema"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import type { MutationResponse, QueryResponse } from "@/types/common"
@@ -65,7 +64,7 @@ export const useCancelAppointment = () => {
       const response = await http.put<MutationResponse<Appointment>>(
         `v1/appointment/${data.id}/confirmation/${data.confirmationCode}/cancel`,
         {
-          status: appointmentStatusEnum.Enum.cancelled,
+          status: appointmentStatusEnumSchema.Enum.cancelled,
         },
       )
 

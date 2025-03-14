@@ -14,12 +14,12 @@ import {
   FormMessage,
 } from "@recharge/ui/components/form"
 import {
-  updateAppointmentSchema,
+  appointmentUpdateSchema,
   type UpdateAppointment,
   type Appointment,
-} from "@recharge/utilities/schema"
-import { Card, CardContent, CardHeader, CardTitle } from "@recharge/ui/components/card"
+} from "@recharge/db/schema"
 import { availableCityLocations, availableProvinceLocations } from "@/lib/location"
+import { Card, CardContent, CardHeader } from "@recharge/ui/components/card"
 import { Selection } from "@recharge/ui/components/selection"
 import DatePicker from "@recharge/ui/components/date-picker"
 import TimePicker from "@recharge/ui/components/time-picker"
@@ -38,7 +38,7 @@ export function ModifyBookingForm({
   isLoading: boolean
 }) {
   const form = useForm<UpdateAppointment>({
-    resolver: zodResolver(updateAppointmentSchema),
+    resolver: zodResolver(appointmentUpdateSchema),
     defaultValues,
   })
 
@@ -298,6 +298,7 @@ export function ModifyBookingForm({
                     className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-[60px] w-full border px-3 py-2 text-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="Any specific requirements..."
                     {...field}
+                    value={field.value || ""}
                   />
                 </FormControl>
                 <FormMessage className="text-xs text-red-500" />

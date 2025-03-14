@@ -2,10 +2,11 @@ import {
   AppointmentStatus,
   CreateAppointment,
   UpdateAppointment,
-  appointmentSchema,
-  cancelAppointmentSchema,
-  updateAppointmentSchema,
-} from "@recharge/utilities/schema"
+  appointmentSelectSchema,
+  appointmentUpdateSchema,
+  appointmentCancelSchema,
+  appointmentStatusEnumSchema,
+} from "@recharge/db/schema"
 import { checkIfNoValidFields, getUpdateData, safeParse } from "../../../utils/validation"
 import { appointment as appointmentTable } from "@recharge/db/schema"
 import * as HttpStatusCodes from "stoker/http-status-codes"
@@ -27,7 +28,7 @@ class AppointmentService {
       })
     }
 
-    const parsedAppointment = safeParse(appointmentSchema, appointment)
+    const parsedAppointment = safeParse(appointmentSelectSchema, appointment)
 
     return parsedAppointment
   }
@@ -41,7 +42,7 @@ class AppointmentService {
       })
     }
 
-    const parsedAppointment = safeParse(appointmentSchema, appointment)
+    const parsedAppointment = safeParse(appointmentSelectSchema, appointment)
 
     return parsedAppointment
   }
@@ -53,7 +54,7 @@ class AppointmentService {
     },
     body: UpdateAppointment,
   ) {
-    const updateData = getUpdateData(updateAppointmentSchema, body)
+    const updateData = getUpdateData(appointmentUpdateSchema, body)
     const noValidFields = checkIfNoValidFields(updateData)
 
     if (noValidFields) {
@@ -81,7 +82,7 @@ class AppointmentService {
       })
     }
 
-    const parsedAppointment = safeParse(appointmentSchema, appointment)
+    const parsedAppointment = safeParse(appointmentSelectSchema, appointment)
 
     return parsedAppointment
   }
@@ -91,9 +92,27 @@ class AppointmentService {
       id: string
       confirmationCode: string
     },
-    status: AppointmentStatus,
+    status?: AppointmentStatus,
   ) {
-    const updateData = getUpdateData(cancelAppointmentSchema, { status })
+    if (!status) {
+      throw Object.assign(new Error("Status is required"), {
+        status: HttpStatusCodes.BAD_REQUEST,
+      })
+    }
+
+    if (!appointmentStatusEnumSchema.safeParse(status).success) {
+      throw Object.assign(new Error("Invalid status"), {
+        status: HttpStatusCodes.BAD_REQUEST,
+      })
+    }
+
+    if (status !== "cancelled") {
+      throw Object.assign(new Error("Bad request"), {
+        status: HttpStatusCodes.BAD_REQUEST,
+      })
+    }
+
+    const updateData = getUpdateData(appointmentCancelSchema, { status })
     const noValidFields = checkIfNoValidFields(updateData)
 
     if (noValidFields) {
@@ -121,7 +140,7 @@ class AppointmentService {
       })
     }
 
-    const parsedAppointment = safeParse(appointmentSchema, appointment)
+    const parsedAppointment = safeParse(appointmentSelectSchema, appointment)
 
     return parsedAppointment
   }
