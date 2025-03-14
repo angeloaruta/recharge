@@ -1,5 +1,6 @@
 import {
   appointmentSchema,
+  cancelAppointmentSchema,
   createAppointmentSchema,
   updateAppointmentSchema,
 } from "@recharge/utilities/schema"
@@ -39,7 +40,7 @@ export type CreateAppointmentRoute = typeof createAppointment
 export const updateAppointment = createRoute({
   tags,
   method: "put",
-  path: "/:id",
+  path: "/:id/confirmation/:confirmationCode",
   description: "Update Appointment",
   request: {
     params: appointmentSchema.pick({ id: true, confirmationCode: true }),
@@ -52,12 +53,12 @@ export type UpdateAppointmentRoute = typeof updateAppointment
 
 export const cancelAppointment = createRoute({
   tags,
-  method: "post",
-  path: "/:id/cancel",
+  method: "put",
+  path: "/:id/confirmation/:confirmationCode/cancel",
   description: "Cancel Appointment",
   request: {
     params: appointmentSchema.pick({ id: true, confirmationCode: true }),
-    body: jsonContent(appointmentSchema.pick({ status: true }), "Cancel Appointment"),
+    body: jsonContent(cancelAppointmentSchema, "Cancel Appointment"),
   },
   responses: routeResponse(HttpStatusCodes.OK, appointmentSchema),
 })

@@ -7,5 +7,6 @@ const router = createRouter()
   .openapi(routes.getAppointment, controller.getAppointment)
   .openapi(routes.createAppointment, controller.createAppointment)
   .openapi(routes.updateAppointment, controller.updateAppointment)
+  .openapi(routes.cancelAppointment, controller.cancelAppointment)
 
 export default router

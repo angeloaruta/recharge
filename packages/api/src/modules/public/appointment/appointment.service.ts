@@ -3,6 +3,7 @@ import {
   CreateAppointment,
   UpdateAppointment,
   appointmentSchema,
+  cancelAppointmentSchema,
   updateAppointmentSchema,
 } from "@recharge/utilities/schema"
 import { checkIfNoValidFields, getUpdateData, safeParse } from "../../../utils/validation"
@@ -92,13 +93,25 @@ class AppointmentService {
     },
     status: AppointmentStatus,
   ) {
-    const { id, confirmationCode } = data
+    const updateData = getUpdateData(cancelAppointmentSchema, { status })
+    const noValidFields = checkIfNoValidFields(updateData)
+
+    if (noValidFields) {
+      throw Object.assign(new Error("No valid fields to update"), {
+        status: HttpStatusCodes.BAD_REQUEST,
+      })
+    }
+
+    const updatedAt = new Date()
 
     const [appointment] = await db
       .update(appointmentTable)
-      .set({ status })
+      .set({ status, updatedAt })
       .where(
-        and(eq(appointmentTable.id, id), eq(appointmentTable.confirmationCode, confirmationCode)),
+        and(
+          eq(appointmentTable.id, data.id),
+          eq(appointmentTable.confirmationCode, data.confirmationCode),
+        ),
       )
       .returning()
 

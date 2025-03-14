@@ -54,7 +54,7 @@ export function BookingForm() {
   }
 
   return (
-    <div className="w-full">
+    <div className="mb-12 w-full">
       <Card className="border-muted/40 bg-background ring-muted/30 before:from-muted/80 before:to-muted/20 py-1 shadow-none ring-1 before:absolute before:inset-0 before:-z-10 before:translate-y-2 before:scale-[0.98] before:bg-gradient-to-b before:blur-xl before:content-['']">
         <CardHeader className="px-4 py-1 sm:px-6">
           <CardTitle className="text-xl">Book Your Appointment</CardTitle>
@@ -145,7 +145,7 @@ export function BookingForm() {
                               </Button>
                             }
                             value={field.value ? new Date(field.value) : new Date()}
-                            onChange={field.onChange}
+                            onChange={(date) => field.onChange(date.toISOString())}
                           />
                         </FormControl>
                         <FormMessage className="text-xs text-red-500" />
@@ -170,16 +170,26 @@ export function BookingForm() {
 
               {/* Address */}
               <div className="space-y-3">
-                <h3 className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
-                  Location
-                </h3>
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-muted-foreground text-xs font-medium tracking-wider uppercase">
+                    Location
+                  </h3>
+                  <span className="text-muted-foreground text-xs">
+                    (Only available in Metro Manila)
+                  </span>
+                </div>
                 <div className="space-y-3">
                   <FormField
                     control={form.control}
                     name="street"
                     render={({ field }) => (
                       <FormItem className="space-y-0.5">
-                        <FormLabel className="text-xs">Street Address</FormLabel>
+                        <FormLabel className="text-xs">
+                          <span className="text-xs">Street, Barangay</span>
+                          <span className="text-muted-foreground text-[10px]">
+                            (House Number and Street, Subdivision, Barangay)
+                          </span>
+                        </FormLabel>
                         <FormControl>
                           <Input className="h-9" {...field} />
                         </FormControl>
@@ -192,7 +202,13 @@ export function BookingForm() {
                     name="city"
                     render={({ field }) => (
                       <FormItem className="space-y-0.5">
-                        <FormLabel className="text-xs">City</FormLabel>
+                        <FormLabel className="text-xs">
+                          {" "}
+                          <span className="text-xs">City</span>
+                          <span className="text-muted-foreground text-[10px]">
+                            (City/Municipality)
+                          </span>
+                        </FormLabel>
                         <FormControl>
                           <Selection
                             value={field.value}

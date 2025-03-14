@@ -1,13 +1,11 @@
 "use client"
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@recharge/ui/components/card"
+  appointmentStatusEnum,
+  type AppointmentStatus,
+  type Appointment,
+  UpdateAppointment,
+} from "@recharge/utilities/schema"
 import {
   CalendarIcon,
   ClockIcon,
@@ -15,16 +13,24 @@ import {
   PencilIcon,
   UserIcon,
   MessageSquareIcon,
+  Trash2,
 } from "lucide-react"
 import {
-  appointmentStatusEnum,
-  type AppointmentStatus,
-  type Appointment,
-} from "@recharge/utilities/schema"
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@recharge/ui/components/card"
 import { convertTo12HourFormat, formatDateToISO, isPastDate } from "@recharge/ui/lib/date"
 import { AddToCalendarButton } from "@recharge/ui/components/add-to-calendar-button"
+import { useCancelAppointment, useUpdateAppointment } from "@/queries/appointment"
+import { ModifyBookingForm } from "@/components/forms/modify-booking-form"
+import { useResponsiveModal } from "@recharge/ui/store/responsive-modal"
 import { Tooltip } from "@recharge/ui/components/tooltip"
 import { Button } from "@recharge/ui/components/button"
+import { format } from "date-fns"
 import Link from "next/link"
 
 const statusColorMap: Record<AppointmentStatus, string> = {
@@ -39,6 +45,10 @@ interface AppointmentDetailsCardProps {
 }
 
 export function AppointmentDetailsCard({ appointment }: AppointmentDetailsCardProps) {
+  const { setResponsiveModal, closeResponsiveModal } = useResponsiveModal()
+  const { mutateAsync: cancelAppointment, isPending: isCancelling } = useCancelAppointment()
+  const { mutateAsync: updateAppointment, isPending: isUpdating } = useUpdateAppointment()
+
   const location =
     appointment.street +
     ", " +
@@ -51,11 +61,57 @@ export function AppointmentDetailsCard({ appointment }: AppointmentDetailsCardPr
   const date = appointment.date ? formatDateToISO(new Date(appointment.date)) : ""
 
   const isPast = isPastDate(date)
+  const isCancelled = appointment.status === appointmentStatusEnum.Enum.cancelled
+  const isDisabled = isCancelling || isUpdating
+
+  const handleCancelAppointment = () => {
+    setResponsiveModal({
+      title: "Cancel Appointment",
+      content: "Are you sure you want to cancel this appointment?",
+      isDestructive: true,
+      onConfirm: async () => {
+        await cancelAppointment({
+          id: appointment.id,
+          confirmationCode: appointment.confirmationCode,
+        })
+        closeResponsiveModal()
+      },
+    })
+  }
+
+  const onModifyAppointment = async (values: UpdateAppointment) => {
+    await updateAppointment({
+      id: appointment.id,
+      confirmationCode: appointment.confirmationCode,
+      payload: values,
+    })
+    closeResponsiveModal()
+  }
+
+  const handleModifyAppointment = () => {
+    setResponsiveModal({
+      title: "Modify Appointment",
+      content: (
+        <ModifyBookingForm
+          defaultValues={appointment}
+          onSubmit={onModifyAppointment}
+          isLoading={isDisabled}
+        />
+      ),
+      isDestructive: false,
+      onConfirm: async () => {
+        const form = document.querySelector("form")
+        if (form) {
+          form.requestSubmit()
+        }
+      },
+    })
+  }
 
   return (
     <Card className="border-muted/40 bg-background ring-muted/30 before:from-muted/80 before:to-muted/20 shadow-sm ring-1 before:absolute before:inset-0 before:-z-10 before:translate-y-2 before:scale-[0.98] before:bg-gradient-to-b before:blur-xl before:content-['']">
       <CardHeader className="pb-2">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <CardTitle className="text-2xl">Current Appointment</CardTitle>
           <Tooltip content={appointment.status}>
             <span className="relative flex size-1.5">
@@ -70,13 +126,18 @@ export function AppointmentDetailsCard({ appointment }: AppointmentDetailsCardPr
         </div>
 
         <CardDescription>
-          {(isPast || appointment.status === appointmentStatusEnum.Enum.cancelled) && (
+          {(isPast || isCancelled) && (
             <div className="ml-auto flex w-full gap-2 sm:w-auto">
               <p className="text-muted-foreground text-[10px]">
                 This appointment has already {isPast ? "passed" : "been cancelled"}.
               </p>
             </div>
           )}
+          <div className="ml-auto flex w-full gap-2 sm:w-auto">
+            <p className="text-muted-foreground text-[10px]">
+              Last updated: {format(new Date(appointment.updatedAt), "PPPPppp")}
+            </p>
+          </div>
         </CardDescription>
       </CardHeader>
 
@@ -147,17 +208,24 @@ export function AppointmentDetailsCard({ appointment }: AppointmentDetailsCardPr
       </CardContent>
 
       <CardFooter className="flex flex-col space-y-3 px-6 pb-6">
-        {!isPast && appointment.status !== appointmentStatusEnum.Enum.cancelled && (
-          <Button className="w-full" asChild>
-            <Link
-              href={`/booking/${appointment.id}/edit?confirmationCode=${appointment.confirmationCode}`}
-            >
-              <PencilIcon className="mr-2 h-4 w-4" />
+        {!isPast && !isCancelled && (
+          <>
+            <Button className="w-full" onClick={handleModifyAppointment} disabled={isDisabled}>
+              <PencilIcon className="h-4 w-4" />
               Modify Appointment
-            </Link>
-          </Button>
+            </Button>
+            <Button
+              className="w-full"
+              variant="destructive"
+              onClick={handleCancelAppointment}
+              disabled={isDisabled}
+            >
+              <Trash2 className="h-4 w-4" />
+              Cancel Appointment
+            </Button>
+          </>
         )}
-        <Button variant="outline" className="w-full" asChild>
+        <Button variant="outline" className="w-full" disabled={isDisabled} asChild>
           <Link href="/">Return to Homepage</Link>
         </Button>
       </CardFooter>

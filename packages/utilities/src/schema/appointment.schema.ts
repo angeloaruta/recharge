@@ -19,8 +19,8 @@ export const appointmentSchema = z
     phone: z.string().min(1, {
       message: "Please enter a phone number.",
     }),
-    date: z.string().min(1, {
-      message: "Please select a date.",
+    date: z.coerce.string().refine((val) => !isNaN(Date.parse(val)), {
+      message: "Please enter a valid date in ISO format (YYYY-MM-DD).",
     }),
     time: z.string().min(1, {
       message: "Please select a time.",
@@ -42,8 +42,12 @@ export const appointmentSchema = z
       message: "Please enter a postal code.",
     }),
     notes: z.string().optional(),
-    createdAt: z.date(),
-    updatedAt: z.date(),
+    createdAt: z.coerce.string().refine((val) => !isNaN(Date.parse(val)), {
+      message: "Invalid date format for createdAt.",
+    }),
+    updatedAt: z.coerce.string().refine((val) => !isNaN(Date.parse(val)), {
+      message: "Invalid date format for updatedAt.",
+    }),
     status: appointmentStatusEnum.default("pending"),
     confirmationCode: z.string(),
   })
@@ -61,8 +65,8 @@ export const appointmentSchema = z
       province: "ON",
       postalCode: "12345",
       notes: "This is a note",
-      createdAt: new Date("2025-01-01"),
-      updatedAt: new Date("2025-01-01"),
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z",
       status: "pending",
       confirmationCode: "123456",
     },
@@ -82,11 +86,15 @@ export const updateAppointmentSchema = appointmentSchema
     createdAt: true,
     updatedAt: true,
     confirmationCode: true,
-    status: true,
   })
   .partial()
+
+export const cancelAppointmentSchema = appointmentSchema.pick({
+  status: true,
+})
 
 export type Appointment = z.infer<typeof appointmentSchema>
 export type CreateAppointment = z.infer<typeof createAppointmentSchema>
 export type UpdateAppointment = z.infer<typeof updateAppointmentSchema>
 export type AppointmentStatus = z.infer<typeof appointmentStatusEnum>
+export type CancelAppointment = z.infer<typeof cancelAppointmentSchema>

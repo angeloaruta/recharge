@@ -1,5 +1,6 @@
 "use client"
 
+import { ResponsiveModal } from "@recharge/ui/components/responsive-modal"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Toaster } from "sonner"
@@ -15,6 +16,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       enableColorScheme
     >
       {children}
+      <ResponsiveModal />
       <SpeedInsights />
       <Toaster richColors position="top-right" />
     </NextThemesProvider>
